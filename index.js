@@ -12,8 +12,11 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
-app.use(express.static('public'));
 
+var userRoute = require('./routes/user-route.js');
+
+app.use('/user', userRoute);
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
