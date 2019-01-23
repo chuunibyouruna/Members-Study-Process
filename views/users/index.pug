@@ -1,0 +1,16 @@
+h1 List Users
+table(border=1 style="border-collapse:collapse")
+    tr
+        th(style="padding:5px") Name
+        th(style="padding:5px") School
+        th(style="padding:5px") Address
+        th(style="padding:5px") Birthday
+        th(style="padding:3px") Action
+    each user in users
+        tr
+            td(style="padding:3px")= user.FullName
+            td(style="padding:3px")= user.School
+            td(style="padding:3px")= user.Address
+            td(style="padding:3px")= user.DoB
+            td(style="padding:3px")
+                a(href="users/edit-profile/"+user.idUser) Edit

@@ -2,8 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const pug = require('pug');
 const upload = require('express-fileupload');
-
 const router = require('./routes/router');
+
+const userRoute = require('./routes/user-route');
 
 const port = 3000;
 
@@ -22,7 +23,8 @@ app.set('views','./views');
 
 app.get('/',(req,res)=>{
     res.render('index');
-})
+});
 
+app.use("/users",userRoute);
 app.use(router);
 app.listen(port,()=> console.log(`Server is started on port ${port}`));
