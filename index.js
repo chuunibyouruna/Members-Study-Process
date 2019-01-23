@@ -20,9 +20,9 @@ app.use(bodyParser.json());
 app.set('view engine','pug');
 app.set('views','./views');
 
-app.get('/',(req,res)=>{
-    res.render('index');
-})
+// app.get('/',(req,res)=>{
+//     res.render('index');
+// })
 
 app.use(router);
 app.listen(port,()=> console.log(`Server is started on port ${port}`));
