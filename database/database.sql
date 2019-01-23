@@ -34,16 +34,17 @@ CREATE TABLE IF NOT EXISTS `mydb`.`User` (
   `idUser` CHAR(6) NOT NULL,
   `FullName` VARCHAR(45) NULL,
   `DoB` DATE NULL,
+  `DateJoin` DATE NULL,
+  `Email`  VARCHAR(45) NOT NULL,
   `School` VARCHAR(45) NULL,
   `Address` VARCHAR(45) NULL,
   `TypeUser_idTypeUser` CHAR(6) NOT NULL,
-  PRIMARY KEY (`idUser`),
-  INDEX `fk_User_TypeUser1_idx` (`TypeUser_idTypeUser` ASC) VISIBLE,
-  CONSTRAINT `fk_User_TypeUser1`
-    FOREIGN KEY (`TypeUser_idTypeUser`)
-    REFERENCES `mydb`.`TypeUser` (`idTypeUser`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`idUser`))  -- ,
+--   CONSTRAINT `fk_User_TypeUser1`
+--     FOREIGN KEY (`TypeUser_idTypeUser`)
+--     REFERENCES `mydb`.`TypeUser` (`idTypeUser`)
+--     ON DELETE NO ACTION
+--     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -67,8 +68,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`UserRecord` (
   `Lession` INT NOT NULL,
   `Point` FLOAT NULL,
   PRIMARY KEY (`Course_idCourse`, `User_idUser`, `Lession`),
-  INDEX `fk_UserRecord_User1_idx` (`User_idUser` ASC) VISIBLE,
-  INDEX `fk_UserRecord_Course1_idx` (`Course_idCourse` ASC) VISIBLE,
   CONSTRAINT `fk_UserRecord_User1`
     FOREIGN KEY (`User_idUser`)
     REFERENCES `mydb`.`User` (`idUser`)
@@ -104,7 +103,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`TopicSharing` (
   `Description` VARCHAR(500) NULL,
   `Topic_idTopic` CHAR(10) NOT NULL,
   PRIMARY KEY (`idTopicSharing`),
-  INDEX `fk_TopicSharing_Topic1_idx` (`Topic_idTopic` ASC) VISIBLE,
   CONSTRAINT `fk_TopicSharing_Topic1`
     FOREIGN KEY (`Topic_idTopic`)
     REFERENCES `mydb`.`Topic` (`idTopic`)
@@ -124,7 +122,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`CodeDetail` (
   `Comment` VARCHAR(200) NULL,
   `State` CHAR(1) NULL DEFAULT 'N',
   PRIMARY KEY (`UserRecord_Course_idCourse`, `UserRecord_User_idUser`, `UserRecord_Lession`),
-  INDEX `fk_CodeDetail_UserRecord1_idx` (`UserRecord_Course_idCourse` ASC, `UserRecord_User_idUser` ASC, `UserRecord_Lession` ASC) VISIBLE,
   CONSTRAINT `fk_CodeDetail_UserRecord1`
     FOREIGN KEY (`UserRecord_Course_idCourse` , `UserRecord_User_idUser` , `UserRecord_Lession`)
     REFERENCES `mydb`.`UserRecord` (`Course_idCourse` , `User_idUser` , `Lession`)
@@ -139,7 +136,6 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`Score` (
   `User_idUser` CHAR(6) NOT NULL,
   `Score` INT NULL,
-  INDEX `fk_Rank_User1_idx` (`User_idUser` ASC) VISIBLE,
   PRIMARY KEY (`User_idUser`),
   CONSTRAINT `fk_Rank_User1`
     FOREIGN KEY (`User_idUser`)
@@ -201,4 +197,3 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-users

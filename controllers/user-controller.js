@@ -22,22 +22,32 @@ module.exports.editProfile = function (req,res) {
     const  sql = "SELECT * FROM User WHERE idUser = '"+id+"'";
     db.query(sql,function(err,users){
         if(!err)
-            var x = getDefaultDate(users[0].DoB);
-            users[0].DoB = x;
-            console.log(x);
+            users[0].DoB = getDefaultDate(users[0].DoB);
+            users[0].DateJoin = getDefaultDate(users[0].DateJoin);
             res.render("users/edit-profile",{
                 user: users[0]
             })
     });
     res.render("users/edit-profile");
 };
+function escapeHtml(unsafe) {
+    return unsafe
+        .trim()
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;")
+        .replace(/\\(.)/mg, "$1");
+}
 module.exports.postEditProfile = function(req,res){
     const data = req.body;
-    console.log(data.birthday);
+    data.name = escapeHtml(data.name);
+    data.school = escapeHtml(data.school);
+    data.address = escapeHtml(data.address);
     var sql = " UPDATE User SET FullName = '"+data.name+"', DoB = '"+data.birthday+"', School = '"+data.school+"', Address = '"+data.address+"' WHERE idUser = '"+data.id+"'" ;
     db.query(sql,function(err){
         if(err) throw err;
-        console.log('success');
-        res.redirect("/users");
+        res.redirect("/users/edit-profile/"+data.id);
     });
 };
