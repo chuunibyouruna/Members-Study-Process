@@ -1,8 +1,16 @@
 const express = require('express');
 
 const router = express.Router();
-const userRouter = require('../controllers/user-controller');
 
-router.get('/',userRouter.index);
+const exerciseRouter = require('./exercise-page-route');
+const gradingRouter = require('./grading-page-route');
+const membersRouter = require('./members-page-route');
+const personalRouter = require('./personal-page-route');
+
+
+router.use('/exercise',exerciseRouter);
+router.use('/grading',gradingRouter);
+router.use('/members',membersRouter);
+router.use('/personal',personalRouter); // <- this route with be change to :id after complete login
 
 module.exports = router;
