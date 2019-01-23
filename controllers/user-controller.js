@@ -1,10 +1,10 @@
+
 var mysql =require('mysql');
 var date = require('date-and-time');
 var config = require('../config/config.js');
 var connection = mysql.createConnection(config.databaseOptions);
 
-
-module.exports.index = function(req,res){
+/*module.exports.index = function(req,res){
 	var page = parseInt(req.query.page) || 1;
 	var currentPage =[page];
 	var pages =[page,page+1,page+2];
@@ -19,5 +19,18 @@ module.exports.index = function(req,res){
 				result[0][i].DoB = date.format(result[0][i].DoB,'YYYY-MM-DD');
 			}
 			res.render('user/index', {users: result[0].splice(start,end), n: pages, current: currentPage});
-	});
+	});*/
+const conn = require('../config');
+
+module.exports.index = (req,res)=>{
+    var topUsers,
+        sql = "CALL GetTopPoint(10);";
+    conn.query(sql,(err,result)=>{
+        if(err) throw err;
+        console.log(result);
+        topUsers = result;
+    });
+    res.render('../views/index',{
+        topUsers: topUsers
+    });
 }
