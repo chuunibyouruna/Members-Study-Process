@@ -4,6 +4,7 @@ const pug = require('pug');
 const upload = require('express-fileupload');
 
 const router = require('./routes/router');
+const userRouter = require('./routes/user-route');
 
 const port = 3000;
 
@@ -25,4 +26,5 @@ app.get('/',(req,res)=>{
 })
 
 app.use(router);
+app.use('/users', userRouter);
 app.listen(port,()=> console.log(`Server is started on port ${port}`));
