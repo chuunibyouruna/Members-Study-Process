@@ -9,15 +9,7 @@ function getDefaultDate(now){
     var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
     return today;
 }
-// module.exports.index = function(req,res){
-//     const  sql = "SELECT * FROM User";
-//     conn.query(sql,function(err,users){
-//         if(!err)
-//             res.render("users/index",{
-//                 users: users
-//             })
-//     });
-// };
+
 module.exports.editProfile = function (req,res) {
     const id = req.params.id;
     const  sql = "SELECT * FROM User WHERE idUser = '"+id+"'";
@@ -50,7 +42,8 @@ module.exports.postEditProfile = function(req,res){
     conn.query(sql,function(err){
         if(err) throw err;
         res.redirect("/users/edit-profile/"+data.id);
-
+    });
+};
 
 module.exports.indexMembersPage = function(req,res){
 	var page = parseInt(req.query.page) || 1;
