@@ -1,17 +1,15 @@
 
-var mysql =require('mysql');
+const conn = require('../config');
 var date = require('date-and-time');
-var config = require('../config/config.js');
-var connection = mysql.createConnection(config.databaseOptions);
 
-/*module.exports.index = function(req,res){
+module.exports.indexMembersPage = function(req,res){
 	var page = parseInt(req.query.page) || 1;
 	var currentPage =[page];
 	var pages =[page,page+1,page+2];
 	var perPage =4;
 	var start = (page -1)*perPage;
 	var end = page*perPage;
-	connection.query('call ShowUser()',
+	conn.query('call ShowUser()',
 		function(err,result,fields){
 			if (err) throw err;
 			//result[0].DoB = date.format(result[0].DoB,'YYYY-MM-DD');
@@ -19,8 +17,9 @@ var connection = mysql.createConnection(config.databaseOptions);
 				result[0][i].DoB = date.format(result[0][i].DoB,'YYYY-MM-DD');
 			}
 			res.render('user/index', {users: result[0].splice(start,end), n: pages, current: currentPage});
-	});*/
-const conn = require('../config');
+    });
+};
+
 
 module.exports.index = (req,res)=>{
     var topUsers,
@@ -33,4 +32,4 @@ module.exports.index = (req,res)=>{
     res.render('../views/index',{
         topUsers: topUsers
     });
-}
+};
