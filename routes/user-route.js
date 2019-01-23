@@ -1,14 +1,8 @@
-/*const controller = require("../controllers/user-controller");
+const controller = require("../controllers/user-controller");
 router.get("/",controller.index);
 router.post("/edit-profile",controller.postEditProfile);
-router.get("/edit-profile/:id",controller.editProfile);/*
+router.get("/edit-profile/:id",controller.editProfile);
 
-/*var express = require('express');
-var controller = require('../controllers/user-controller');
-
-const router = express.Router();
-
-router.get('/', controller.index);*/
 
 const express = require('express');
 
