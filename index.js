@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const pug = require('pug');
 const upload = require('express-fileupload');
-
 const router = require('./routes/router');
 const userRouter = require('./routes/user-route');
 
@@ -14,16 +13,12 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 app.use(express.static('public'));
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.set('view engine','pug');
 app.set('views','./views');
 
-app.get('/',(req,res)=>{
-    res.render('index');
-})
 
 app.use(router);
 app.use('/users', userRouter);

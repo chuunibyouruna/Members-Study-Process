@@ -34,6 +34,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`User` (
   `idUser` CHAR(6) NOT NULL,
   `FullName` VARCHAR(45) NULL,
   `DoB` DATE NULL,
+  `DateJoin` DATE NULL,
+  `Email`  VARCHAR(45) NOT NULL,
   `School` VARCHAR(45) NULL,
   `Address` VARCHAR(45) NULL,
   `TypeUser_idTypeUser` CHAR(6) NOT NULL,
@@ -43,6 +45,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`User` (
     REFERENCES `mydb`.`TypeUser` (`idTypeUser`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+
 ENGINE = InnoDB;
 
 

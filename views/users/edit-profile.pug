@@ -1,0 +1,30 @@
+h1 Edit profile
+form(action="/users/edit-profile", method="POST")
+    label(for="name") Full name
+    br
+    input(id = "name", type='text', name = "name", required='required', value= (user.FullName) ? user.FullName :'' )
+    br
+    label(for="school") School
+    br
+    input(id= "school", type="text", name = "school", required='required' value= (user.School) ? user.School :'' )
+    br
+    label(for="email") Email
+    br
+    input(id= "email", type="email", name = "email", disabled='disabled' value= (user.Email) ? user.Email :'' )
+    br
+    label(for="dateJoin") Date join
+    br
+    input(id= "dateJoin", type="date", name = "dateJoin", disabled='disabled' value= (user.DateJoin) ? user.DateJoin :'' )
+    br
+    label(for="address") Address
+    br
+    input(id="address", type="text", name = "address", required='required' value= (user.Address) ? user.Address :'' )
+    br
+    label(for="birthday") Birthday
+    br
+    input(id="birthday", type="date", name = "birthday", required='required' value= (user.DoB) ? user.DoB :'' )
+    br
+    input(type="hidden", name='id', value=(user.idUser) ? user.idUser :'')
+    button(type="submit") Update
+    button(type="button")
+        a(href="/users" style="color:black;text-decoration:none") Return list users
