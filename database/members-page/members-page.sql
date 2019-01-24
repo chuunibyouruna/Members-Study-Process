@@ -21,11 +21,8 @@ insert into UserRecord value('course01', 'user06', 40, 96.5);
 insert into UserRecord value('course01', 'user07', 40, 97.5);
 insert into UserRecord value('course01', 'user08', 40, 97.5);
 
-
 delimiter :)
 create procedure ShowUser()
 begin
 	select * from User join UserRecord on User.idUser = UserRecord.User_idUser;
 end:)
-
-call ShowUser();
