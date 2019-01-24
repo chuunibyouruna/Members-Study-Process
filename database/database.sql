@@ -39,12 +39,13 @@ CREATE TABLE IF NOT EXISTS `mydb`.`User` (
   `School` VARCHAR(45) NULL,
   `Address` VARCHAR(45) NULL,
   `TypeUser_idTypeUser` CHAR(6) NOT NULL,
-  PRIMARY KEY (`idUser`))  -- ,
---   CONSTRAINT `fk_User_TypeUser1`
---     FOREIGN KEY (`TypeUser_idTypeUser`)
---     REFERENCES `mydb`.`TypeUser` (`idTypeUser`)
---     ON DELETE NO ACTION
---     ON UPDATE NO ACTION)
+  PRIMARY KEY (`idUser`),
+  CONSTRAINT `fk_User_TypeUser1`
+    FOREIGN KEY (`TypeUser_idTypeUser`)
+    REFERENCES `mydb`.`TypeUser` (`idTypeUser`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+
 ENGINE = InnoDB;
 
 

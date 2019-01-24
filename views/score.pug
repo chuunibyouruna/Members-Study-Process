@@ -1,0 +1,8 @@
+html
+	head
+	body
+		if users
+			each usr in users
+				.name= 'Name: '+ usr.FullName
+					div= 'Score: ' + usr.Score
+				br
