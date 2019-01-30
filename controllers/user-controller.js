@@ -34,17 +34,18 @@ function getDefaultDate(now){
     return today;
 }
 
-module.exports.editProfile = function (req,res) {
+module.exports.editProfile =async function (req,res) {
     const id = req.params.id;
-    const  sql = "SELECT * FROM User WHERE idUser = '"+id+"'";
-    conn.query(sql,async function(err,users){
-        await users;
+    // const  sql = "SELECT * FROM User WHERE idUser = '"+id+"'";
+    // CALL getUserProfile('05')
+    const sql = "call getUserProfile('"+id+"')";
+    await conn.query(sql,async function(err,users,field){
+        let user = users[0][0];
         if(!err){
-            users[0].DoB = getDefaultDate(users[0].DoB);
-            users[0].DateJoin = getDefaultDate(users[0].DateJoin);
-            console.log(users[0]);
+            user.DoB = getDefaultDate(user.DoB);
+            user.DateJoin = getDefaultDate(user.DateJoin);
             res.render("users/edit-profile",{
-                user: users[0]
+                user: user
             })
         }
     });
@@ -65,7 +66,8 @@ module.exports.postEditProfile = function(req,res){
     data.name = escapeHtml(data.name);
     data.school = escapeHtml(data.school);
     data.address = escapeHtml(data.address);
-    var sql = " UPDATE User SET FullName = '"+data.name+"', DoB = '"+data.birthday+"', School = '"+data.school+"', Address = '"+data.address+"' WHERE idUser = '"+data.id+"'" ;
+    // var sql = " UPDATE User SET FullName = '"+data.name+"', DoB = '"+data.birthday+"', School = '"+data.school+"', Address = '"+data.address+"' WHERE idUser = '"+data.id+"'" ;
+    var sql = "CALL updateUser('"+data.name+"', '"+data.birthday+"','"+data.school+"', '"+data.address+"', '"+data.id+"')";
     conn.query(sql,function(err){
         if(err) throw err;
         res.redirect("/users/personal/edit-profile/"+data.id);
@@ -83,7 +85,7 @@ module.exports.indexMembersPage = function(req,res){
 		function(err,result,fields){
 			if (err) throw err;
 			//result[0].DoB = date.format(result[0].DoB,'YYYY-MM-DD');
-            console.log(result[0]);
+            // console.log(result[0]);
 			for(var i in result[0]){
 				result[0][i].DoB = date.format(result[0][i].DoB,'YYYY-MM-DD');
 			}
