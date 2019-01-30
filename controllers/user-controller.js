@@ -37,15 +37,18 @@ function getDefaultDate(now){
 module.exports.editProfile = function (req,res) {
     const id = req.params.id;
     const  sql = "SELECT * FROM User WHERE idUser = '"+id+"'";
-    conn.query(sql,function(err,users){
-        if(!err)
+    conn.query(sql,async function(err,users){
+        await users;
+        if(!err){
             users[0].DoB = getDefaultDate(users[0].DoB);
             users[0].DateJoin = getDefaultDate(users[0].DateJoin);
+            console.log(users[0]);
             res.render("users/edit-profile",{
                 user: users[0]
             })
+        }
     });
-    res.render("users/edit-profile");
+    // res.render("users/edit-profile");
 };
 function escapeHtml(unsafe) {
     return unsafe
@@ -65,10 +68,10 @@ module.exports.postEditProfile = function(req,res){
     var sql = " UPDATE User SET FullName = '"+data.name+"', DoB = '"+data.birthday+"', School = '"+data.school+"', Address = '"+data.address+"' WHERE idUser = '"+data.id+"'" ;
     conn.query(sql,function(err){
         if(err) throw err;
-        res.redirect("/users/edit-profile/"+data.id);
+        res.redirect("/users/personal/edit-profile/"+data.id);
     });
+    // res.redirect("/users/personal");
 };
-
 module.exports.indexMembersPage = function(req,res){
 	var page = parseInt(req.query.page) || 1;
 	var currentPage =[page];
@@ -80,6 +83,7 @@ module.exports.indexMembersPage = function(req,res){
 		function(err,result,fields){
 			if (err) throw err;
 			//result[0].DoB = date.format(result[0].DoB,'YYYY-MM-DD');
+            console.log(result[0]);
 			for(var i in result[0]){
 				result[0][i].DoB = date.format(result[0][i].DoB,'YYYY-MM-DD');
 			}
@@ -89,8 +93,8 @@ module.exports.indexMembersPage = function(req,res){
 
 
 module.exports.index = (req,res)=>{
-    var topUsers,
-        sql = "CALL GetTopPoint(10);";
+    var topUsers = "";
+        sql = "CALL GetTopPoint(10)";
     conn.query(sql,(err,result)=>{
         if(err) throw err;
         console.log(result);
