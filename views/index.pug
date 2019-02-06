@@ -4,6 +4,62 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
-        title Document
+        link(href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet")
+        link(rel="stylesheet", href="/css/base/variable.css")
+        link(rel="stylesheet", href="/css/base/reset.css")
+        link(rel="stylesheet", href="/css/base/custom.css")
+        link(rel="stylesheet", href="/css/components/button.css")
+        link(rel="stylesheet", href="/css/components/container.css")
+        link(rel="stylesheet", href="/css/layouts/navbar.css")      
+        link(rel="stylesheet", href="/css/layouts/dashboard-member.css")  
+        title HOME
     body
-        h1 hello
+        nav(class="navbar")
+            a(href="#", class="nav-link nav-brand")
+                img(src="/img/logo.png")
+            div(class="action-group")
+                ul(class="link-group")
+                    li
+                        a(href="#" class="nav-link") Trang chủ
+                    li
+                        a(href="#" class="nav-link") Thành viên
+                    li
+                        a(href="#" class="nav-link") Team
+                    li
+                        a(href="#" class="nav-link") Bài tập
+                button(class="btn-action") Đăng ký / đăng nhập
+
+        section(class="dashboard-member")
+            div(class="container")
+                ul(class="dashboard-member-list")
+                    p(class="dashboard-title") Dashboard member
+                    li(class="dashboard-item")  
+                        div(class="dashboard-member")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969   
+
+                    li(class="dashboard-item")  
+                        div(class="dashboard-member")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969 
+
+                    li(class="dashboard-item")  
+                        div(class="dashboard-member")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969 
+
+                    li(class="dashboard-item")  
+                        div(class="dashboard-member")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969                      
+                        
+

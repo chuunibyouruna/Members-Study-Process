@@ -1,0 +1,33 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+}
+
+.navbar .nav-link{
+    color: var(--gray);
+    transition: color .3s;
+}
+
+.navbar .nav-link:hover{
+    color: var(--black);
+}
+
+.navbar .nav-brand img{
+    display: block;
+    width: 40px;
+    height: 40px;    
+    border-radius: 50%;    
+}
+
+.navbar .action-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .action-group .link-group li{
+    margin: 0 1rem;
+    float: left;
+}

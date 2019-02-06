@@ -1,0 +1,42 @@
+.dashboard-member .dashboard-member-list .dashboard-title{
+    font-family: 'Montserrat', sans-serif;
+    font-size: .9rem;
+    margin-bottom: 1.3rem;
+}
+
+.dashboard-member .dashboard-member-list{
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+    padding: 15px 20px;
+}
+
+.dashboard-member .dashboard-member-list .dashboard-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-member .dashboard-member-list .dashboard-item .dashboard-member{
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-member .dashboard-member-list .dashboard-item .dashboard-member .member-avatar{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border:0;
+    margin: 0 1rem;
+}
+.dashboard-member .dashboard-member-list .dashboard-item .dashboard-member .member-index{
+    font-size: 1.6rem;
+}
+
+.dashboard-member .dashboard-member-list .dashboard-item .dashboard-member .member-name{
+    font-size: 1.2rem;
+    text-transform: capitalize;
+}
+
+.dashboard-member .dashboard-member-list .dashboard-item .dashboard-score{
+    font-size: 1.3rem;
+}
