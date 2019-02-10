@@ -21,3 +21,8 @@ a:hover{
     text-decoration: none;
     color: var(--black);
 }
+
+section {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}

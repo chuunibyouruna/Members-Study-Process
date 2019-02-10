@@ -1,0 +1,13 @@
+.copy-right{
+    text-align: center;
+    padding: 5px;
+}
+
+.copy-right .coders{
+    color:#81BFA2;
+    font-weight: bold;
+}
+
+.copy-right .coders .tokyo{
+    color: #858585;
+}

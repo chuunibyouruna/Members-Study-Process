@@ -1,0 +1,11 @@
+.home-introduce .introduce-content{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    justify-content: center;
+    align-self: center;
+}
+
+.home-introduce .introduce-content div{
+    flex: 1;
+    padding: 0 15px;
+}
