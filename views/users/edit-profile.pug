@@ -1,8 +1,8 @@
 h1 Edit profile
-form(action="/users/edit-profile", method="POST")
+form(action="/users/personal/edit-profile", method="POST")
     label(for="name") Full name
     br
-    input(id = "name", type='text', name = "name", required='required', value= (user.FullName) ? user.FullName :'' )
+    input(id = "name", type='text', name = "name", required='required', value= (user.FullName) ? user.FullName : '' )
     br
     label(for="school") School
     br
@@ -26,5 +26,3 @@ form(action="/users/edit-profile", method="POST")
     br
     input(type="hidden", name='id', value=(user.idUser) ? user.idUser :'')
     button(type="submit") Update
-    button(type="button")
-        a(href="/users" style="color:black;text-decoration:none") Return list users
