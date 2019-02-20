@@ -23,11 +23,11 @@
 .slide-show .slider .arrow{
     display: block;
     position: absolute;
-    color: rgba(0,0,0,0.5);            
+    color: rgba(128, 128, 128, 0.589);            
     cursor: pointer;
     font-size: 4rem;
     top: 50%;  
-    transform: translateY(-100%);  
+    transform: translateY(-80%);  
     user-select: none;
     transition: 0.6s ease;
     font-weight: bold;
@@ -38,11 +38,11 @@
 }
 
 .slide-show .slider .arrow.prev{
-    left: 15px;
+    left: 1.2rem;
 }
 
 .slide-show .slider .arrow.next{
-    right: 15px;
+    right: 1.2rem;
 }
 
 .slide-show .slider .slide img{

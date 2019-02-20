@@ -1,0 +1,221 @@
+extends ../layouts/layout
+block content
+    nav(class="navbar")
+        a(href="#", class="nav-link nav-brand")
+            img(src="/img/logo.png")
+        div(class="action-group")
+            input(id="toogle-sidebar" type="checkbox")
+            label(class="btn-toogle-sidebar" for="toogle-sidebar") 
+                i(class="fa fa-bars")
+            div(id="sidebar-m")       
+                div(class="sidebar-header")                    
+                    button(class="btn-action btnToggleModal" data-target="#logModal") Đăng ký / đăng nhập
+                div(class="sidebar-body")
+                    ul(class="sidebar-link-group")           
+                        li
+                            a(href="#" class="nav-link")
+                                i(class="fa fa-home")
+                                span Trang chủ                  
+                        li
+                            a(href="#" class="nav-link")
+                                i(class="fa fa-users")
+                                span Thành viên
+                        li
+                            a(href="#" class="nav-link")
+                                i(class="fa fa-user-plus")
+                                span Team
+                        li
+                            a(href="#" class="nav-link")
+                                i(class="fa fa-book")
+                                span Bài tập                
+                            
+            ul(class="link-group")
+                li
+                    a(href="#" class="nav-link") Trang chủ
+                li
+                    a(href="#" class="nav-link") Thành viên
+                li
+                    a(href="#" class="nav-link") Team
+                li
+                    a(href="#" class="nav-link") Bài tập
+            button(class="btn-action btnToggleModal" data-target="#logModal") Đăng ký / đăng nhập  
+            label(class="btn-toogle-dropdown" for="toggle-dropdown-account")
+                img(src="http://localhost:3000/img/avatar.png")
+            input(id="toggle-dropdown-account" type="checkbox")
+            div(id="dropdown-account")
+                ul
+                    li
+                        a(class="nav-link" href="#") Thông tin tài khoản
+                    li
+                        a(class="nav-link" href="#") Đổi mật khẩu
+                    li
+                        a(class="nav-link" href="#") Đăng xuất
+
+          
+        
+    div(class="modal" id="logModal" )
+        div(class="modal-content")
+            span(class="close") &times;
+            div(class="modal-body")
+                p Some text
+
+    section(class="dashboard-member")
+        div(class="container")
+            ul(class="dashboard-member-list")
+                p(class="dashboard-title") Dashboard member
+                li(class="dashboard-item")  
+                    div(class="dashboard-member")
+                        b(class="member-index") 1
+                        img(class="member-avatar" src="/img/avatar.png")
+                        span(class="member-name") Đặng Quốc Dũng
+                    p(class="dashboard-score") 969   
+
+                li(class="dashboard-item")  
+                    div(class="dashboard-member")
+                        b(class="member-index") 1
+                        img(class="member-avatar" src="/img/avatar.png")
+                        span(class="member-name") Đặng Quốc Dũng
+                    p(class="dashboard-score") 969 
+
+                li(class="dashboard-item")  
+                    div(class="dashboard-member")
+                        b(class="member-index") 1
+                        img(class="member-avatar" src="/img/avatar.png")
+                        span(class="member-name") Đặng Quốc Dũng
+                    p(class="dashboard-score") 969 
+
+                li(class="dashboard-item")  
+                    div(class="dashboard-member")
+                        b(class="member-index") 1
+                        img(class="member-avatar" src="/img/avatar.png")
+                        span(class="member-name") Đặng Quốc Dũng
+                    p(class="dashboard-score") 969   
+
+                li(class="dashboard-item")  
+                    div(class="dashboard-member")
+                        b(class="member-index") 1
+                        img(class="member-avatar" src="/img/avatar.png")
+                        span(class="member-name") Đặng Quốc Dũng
+                    p(class="dashboard-score") 969
+
+                li(class="dashboard-item")  
+                    div(class="dashboard-member")
+                        b(class="member-index") 1
+                        img(class="member-avatar" src="/img/avatar.png")
+                        span(class="member-name") Đặng Quốc Dũng
+                    p(class="dashboard-score") 969
+
+                li(class="dashboard-item")  
+                    div(class="dashboard-member")
+                        b(class="member-index") 1
+                        img(class="member-avatar" src="/img/avatar.png")
+                        span(class="member-name") Đặng Quốc Dũng
+                    p(class="dashboard-score") 969
+
+                li(class="dashboard-item")  
+                    div(class="dashboard-member")
+                        b(class="member-index") 1
+                        img(class="member-avatar" src="/img/avatar.png")
+                        span(class="member-name") Đặng Quốc Dũng
+                    p(class="dashboard-score") 969
+
+                li(class="dashboard-item")  
+                    div(class="dashboard-member")
+                        b(class="member-index") 1
+                        img(class="member-avatar" src="/img/avatar.png")
+                        span(class="member-name") Đặng Quốc Dũng
+                    p(class="dashboard-score") 969
+
+                li(class="dashboard-item")  
+                    div(class="dashboard-member")
+                        b(class="member-index") 1
+                        img(class="member-avatar" src="/img/avatar.png")
+                        span(class="member-name") Đặng Quốc Dũng
+                    p(class="dashboard-score") 969
+
+    section(class="home-introduce")
+        div(class="container")
+            div(class="introduce-content")
+                div(class="img-wrapper")
+                    img(src="https://picsum.photos/550" with="100%")
+                div(class="content-wrapper")
+                    h1(class="title") About coders.tokyo Cần Thơ
+                    p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+    section(class="home-advantages container")
+        h1(class= "title") Lợi ích khi tham gia cộng đồng chúng tôi
+        div(class="advantages-content")
+            ul(class="advantages-list")
+                li(class="advantages-item")
+                    div(class="right")
+                        img(src="https://picsum.photos/350" )
+
+                    div(class="left")
+                        h1(class="sub-title") 
+                            span(class="index") 1 
+                            span Lorem ipsum lora
+                        p Lipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consequat libero. Vestibulum sapien risus, molestie ut aliquam nec, vulputate et purus. In eros eros, ullamcorper pretium mi sed, laoreet dapibus nibh. Phasellus eu libero eget nisl luctus ultricies. Aliquam a diam libero. Vivamus eu maud lacus placerat tincidunt. Curabitur vehicula 
+                                                    
+                li(class="advantages-item")
+                    div(class="left")
+                        img(src="https://picsum.photos/350" )
+
+                    div(class="right")
+                        h1(class="sub-title") 
+                            span(class="index") 1 
+                            span Lorem ipsum lora
+                        p Lipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consequat libero. Vestibulum sapien risus, molestie ut aliquam nec, vulputate et purus. In eros eros, ullamcorper pretium mi sed, laoreet dapibus nibh. Phasellus eu libero eget nisl luctus ultricies. Aliquam a diam libero. Vivamus eu maud lacus placerat tincidunt. Curabitur vehicula                                 
+
+                li(class="advantages-item")
+                    div(class="right")
+                        img(src="https://picsum.photos/400" )
+
+                    div(class="left")
+                        h1(class="sub-title") 
+                            span(class="index") 1 
+                            span Lorem ipsum lora
+                        p Lipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consequat libero. Vestibulum sapien risus, molestie ut aliquam nec, vulputate et purus. In eros eros, ullamcorper pretium mi sed, laoreet dapibus nibh. Phasellus eu libero eget nisl luctus ultricies. Aliquam a diam libero. Vivamus eu maud lacus placerat tincidunt. Curabitur vehicula 
+                            
+                    
+
+                li(class="advantages-item")
+                    div(class="left")
+                        img(src="https://picsum.photos/380" )
+
+                    div(class="right")
+                        h1(class="sub-title") 
+                            span(class="index") 1 
+                            span Lorem ipsum lora
+                        p Lipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consequat libero. Vestibulum sapien risus, molestie ut aliquam nec, vulputate et purus. In eros eros, ullamcorper pretium mi sed, laoreet dapibus nibh. Phasellus eu libero eget nisl luctus ultricies. Aliquam a diam libero. Vivamus eu maud lacus placerat tincidunt. Curabitur vehicula 
+                                
+    section(class="slide-show")
+        h1(class="title") Hình ảnh các buổi offline của cộng đồng
+        div(class="slider")
+            div(class="slide" )
+                img(src="https://picsum.photos/750" )  
+            div(class="slide" )
+                img(src="https://picsum.photos/700" ) 
+            div(class="slide" )
+                img(src="https://picsum.photos/800" )   
+
+            a(class="arrow prev" onclick="plusSlides(-1)") 
+                i(class="fa fa-angle-left")
+            a(class="arrow next" onclick="plusSlides(1)") 
+                i(class="fa fa-angle-right")
+
+        div(class="dots-wrapper")
+            span(class="dot" onclick="currentSlide(1)")
+            span(class="dot" onclick="currentSlide(2)")
+            span(class="dot" onclick="currentSlide(3)")
+
+    section(class="copy-right")
+        p Copy right by
+            span(class="coders")  Coders.
+                span(class="tokyo") Tokyo
+            span  Cần Thơ
+
+    block append script
+        script(src="/js/slider.js")  
+        script(src="/js/modal.js")                   
+                        
+

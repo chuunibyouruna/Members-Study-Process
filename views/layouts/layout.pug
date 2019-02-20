@@ -4,6 +4,7 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
         link(href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet")
         link(href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet")
         link(rel="stylesheet", href="/css/base/variable.css")
@@ -13,25 +14,15 @@ html(lang="en")
         link(rel="stylesheet", href="/css/components/container.css")
         link(rel="stylesheet", href="/css/components/copy-right.css")
         link(rel="stylesheet", href="/css/components/text.css")
+        link(rel="stylesheet", href="/css/components/modal.css")
         link(rel="stylesheet", href="/css/layouts/navbar.css")      
+        link(rel="stylesheet", href="/css/layouts/sidebar-m.css")    
         link(rel="stylesheet", href="/css/layouts/home/dashboard-member.css")  
         link(rel="stylesheet", href="/css/layouts/home/introduce.css")
         link(rel="stylesheet", href="/css/layouts/home/advantages.css")
         link(rel="stylesheet", href="/css/layouts/home/slider.css")
-        title TITLE
+        title My Site - #{title}
     body
-        nav(class="navbar")
-            a(href="#", class="nav-link nav-brand")
-                img(src="/img/logo.png")
-            div(class="action-group")
-                ul(class="link-group")
-                    li
-                        a(href="#" class="nav-link") Trang chủ
-                    li
-                        a(href="#" class="nav-link") Thành viên
-                    li
-                        a(href="#" class="nav-link") Team
-                    li
-                        a(href="#" class="nav-link") Bài tập
-                button(class="btn-action") Đăng ký / đăng nhập
         block content
+        block foot
+        block scripts

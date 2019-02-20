@@ -1,0 +1,49 @@
+#sidebar-m{
+    position: fixed;
+    transition: all .3s ease-in-out;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 100;
+    display: none;
+    background: #fff;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 2rem;
+    box-shadow: 2px 3px 5px rgba(0,0,0,0.2);
+    transform: translateX(-100%);
+}
+
+#sidebar-m .sidebar-header{
+    text-align: center;
+}
+
+#sidebar-m .sidebar-header .btn-toogle-sidebar{
+    margin-right: 1rem;
+    font-size: 1.5rem;
+}
+
+#sidebar-m .btn-action{
+    display: inline-block;
+}
+
+#sidebar-m .sidebar-link-group li a{
+    color: var(--black);
+    display: block;
+    font-size: 1rem;
+    line-height: 2;
+}
+
+#sidebar-m .sidebar-link-group li a i{
+    margin-right: 1.5rem;
+}
+
+#toogle-sidebar:checked  ~ #sidebar-m {
+    transform: translateX(0);
+}
+
+@media screen and (max-width: 600px){
+    #sidebar-m{
+        display: block;
+    }
+}

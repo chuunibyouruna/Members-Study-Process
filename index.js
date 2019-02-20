@@ -14,16 +14,20 @@ const cookieParser = require('cookie-parser');
 
 app.use(express.static('public'));
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-app.set('view engine','pug');
-app.set('views','./views');
+app.set('view engine', 'pug');
+app.set('views', './views');
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
     res.render('index');
 })
 
+app.get('/home', (req, res) => {
+    res.render("home/index")
+})
+
 app.use(router);
-app.listen(port,()=> console.log(`Server is started on port ${port}`));
+app.listen(port, () => console.log(`Server is started on port ${port}`));
