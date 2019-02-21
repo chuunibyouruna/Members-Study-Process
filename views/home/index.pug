@@ -50,14 +50,57 @@ block content
                         a(class="nav-link" href="#") Đổi mật khẩu
                     li
                         a(class="nav-link" href="#") Đăng xuất
-
           
-        
     div(class="modal" id="logModal" )
         div(class="modal-content")
             span(class="close") &times;
+            div(class="modal-header")
+                ul(class="nav-tabs")
+                    li(class="nav-item")
+                        a(class="nav-link active" data-role-tab="#logTab" data-toggle-tab="#login-form") Đăng nhập
+                    li(class="nav-item")
+                        a(class="nav-link" data-role-tab="#logTab" data-toggle-tab="#register-form") Đăng ký
             div(class="modal-body")
-                p Some text
+                div(class="tab-content" id="logTab")
+                    div(class="tab-pane active fade" id="login-form")
+                        h5(class="tab-title") Đăng nhập               
+                        div(class="tab-pane-content")    
+                            div(class="img-container right")
+                                img(src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signup-image.jpg")     
+                            form(action="", method="post" class="left")
+                                div(class="form-group")
+                                    label(for="login-name") 
+                                        i(class="fa fa-user")
+                                    input(placeholder='Nhập tên đăng nhập' class="form-control" id="login-name")
+                                div(class="form-group")
+                                    label(for="login-password") 
+                                        i(class="fa fa-lock")
+                                    input(class="form-control" placeholder="Nhập mật khẩu" id="login-password" type="password") 
+                                button(type="submit" class="btn-action") Đăng nhập                            
+
+                    div(class="tab-pane fade" id="register-form")
+                        h5(class="tab-title") Đăng ký
+                        div(class="tab-pane-content")         
+                            div(class="img-container left")
+                                img(src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg")
+                            form(action="", method="post" class="right")
+                                div(class="form-group")
+                                    label(for="register-fullName") 
+                                        i(class="fa fa-odnoklassniki")
+                                    input(placeholder='Nhập họ tên' class="form-control" id="register-fullName")
+                                div(class="form-group")
+                                    label(for="register-name") 
+                                        i(class="fa fa-user")
+                                    input(placeholder='Nhập tên đăng ký' class="form-control" id="register-name")
+                                div(class="form-group")
+                                    label(for="register-password") 
+                                        i(class="fa fa-lock")
+                                    input(class="form-control" placeholder="Nhập mật khẩu" id="register-password" type="password") 
+                                div(class="form-group")
+                                    label(for="register-confirm") 
+                                        i(class="fa fa-user-secret")
+                                    input(class="form-control" placeholder="Nhập mật khẩu xác nhận" id="register-confirm" type="password") 
+                                button(type="submit" class="btn-action") Đăng ký tài khoản                            
 
     section(class="dashboard-member")
         div(class="container")
@@ -191,11 +234,11 @@ block content
     section(class="slide-show")
         h1(class="title") Hình ảnh các buổi offline của cộng đồng
         div(class="slider")
-            div(class="slide" )
+            div(class="slide fade" )
                 img(src="https://picsum.photos/750" )  
-            div(class="slide" )
+            div(class="slide fade" )
                 img(src="https://picsum.photos/700" ) 
-            div(class="slide" )
+            div(class="slide fade" )
                 img(src="https://picsum.photos/800" )   
 
             a(class="arrow prev" onclick="plusSlides(-1)") 
@@ -216,6 +259,7 @@ block content
 
     block append script
         script(src="/js/slider.js")  
-        script(src="/js/modal.js")                   
+        script(src="/js/modal.js")   
+        script(src="/js/tab-pane.js")                
                         
 

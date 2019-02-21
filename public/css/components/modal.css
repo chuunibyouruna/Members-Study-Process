@@ -46,6 +46,7 @@
     cursor: pointer;
 }
 
+
 @keyframes displayModal{
     from {
         top: -300px; opacity: 0
@@ -62,5 +63,17 @@
     to {
         top: -300px; 
         opacity: 0;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .modal-content {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .modal-content {
+        width: 80%;
     }
 }
