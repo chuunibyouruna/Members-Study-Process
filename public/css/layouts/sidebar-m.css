@@ -18,6 +18,41 @@
     text-align: center;
 }
 
+#sidebar-m .sidebar-header .btn-action{
+    display: none;
+}
+
+#sidebar-m .sidebar-header .account-wrapper-m{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 3px 5px rgba(0,0,0,0.2);
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#sidebar-m .sidebar-header .account-wrapper-m img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#dropdown-account-m{
+    transform-origin: top left;
+    transition: all .4s;
+    display: none;
+}
+
+#toggle-dropdown-account-m{
+    display: none;
+}
+
+#toggle-dropdown-account-m:checked ~ #dropdown-account-m{
+    display: block;
+    animation: dropdown-m .4s ease;
+}
+
 #sidebar-m .sidebar-header .btn-toogle-sidebar{
     margin-right: 1rem;
     font-size: 1.5rem;
@@ -27,14 +62,15 @@
     display: inline-block;
 }
 
-#sidebar-m .sidebar-link-group li a{
+#sidebar-m  li .nav-link{
     color: var(--black);
     display: block;
     font-size: 1rem;
     line-height: 2;
+    text-align: left;
 }
 
-#sidebar-m .sidebar-link-group li a i{
+#sidebar-m li .nav-link i{
     margin-right: 1.5rem;
 }
 
@@ -45,5 +81,14 @@
 @media screen and (max-width: 600px){
     #sidebar-m{
         display: block;
+    }
+}
+
+@keyframes dropdown-m{
+    from {
+        transform: scaleY(0);
+    } 
+    to {
+        transform: scaleY(1);
     }
 }

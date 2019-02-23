@@ -7,9 +7,29 @@ block content
             input(id="toogle-sidebar" type="checkbox")
             label(class="btn-toogle-sidebar" for="toogle-sidebar") 
                 i(class="fa fa-bars")
+            //- SIDEBAR MOBILE
             div(id="sidebar-m")       
                 div(class="sidebar-header")                    
                     button(class="btn-action btnToggleModal" data-target="#logModal") Đăng ký / đăng nhập
+                    input(id="toggle-dropdown-account-m" type="checkbox")
+                    label(class="account-wrapper-m" for="toggle-dropdown-account-m")
+                        img(class="avatar-m" src="http://localhost:3000/img/avatar.png") 
+                        p Hi, 
+                        span Dang Quoc Dung 
+                    div(id="dropdown-account-m")
+                        ul
+                            li
+                                a(class="nav-link" href="#") 
+                                    i(class="fa fa-user")
+                                    span Thông tin tài khoản
+                            li
+                                a(class="nav-link" href="#") 
+                                    i(class="fa fa-lock")
+                                    span Đổi mật khẩu
+                            li
+                                a(class="nav-link" href="#") 
+                                    i(class="fa fa-sign-out")
+                                    span Đăng xuất
                 div(class="sidebar-body")
                     ul(class="sidebar-link-group")           
                         li
@@ -70,7 +90,7 @@ block content
                             form(action="", method="post" class="left")
                                 div(class="form-group")
                                     label(for="login-name") 
-                                        i(class="fa fa-user")
+                                        i(class="fa fa-user-o")
                                     input(placeholder='Nhập tên đăng nhập' class="form-control" id="login-name")
                                 div(class="form-group")
                                     label(for="login-password") 
@@ -90,7 +110,7 @@ block content
                                     input(placeholder='Nhập họ tên' class="form-control" id="register-fullName")
                                 div(class="form-group")
                                     label(for="register-name") 
-                                        i(class="fa fa-user")
+                                        i(class="fa fa-user-o")
                                     input(placeholder='Nhập tên đăng ký' class="form-control" id="register-name")
                                 div(class="form-group")
                                     label(for="register-password") 
@@ -98,7 +118,7 @@ block content
                                     input(class="form-control" placeholder="Nhập mật khẩu" id="register-password" type="password") 
                                 div(class="form-group")
                                     label(for="register-confirm") 
-                                        i(class="fa fa-user-secret")
+                                        i(class="fa fa-expeditedssl")
                                     input(class="form-control" placeholder="Nhập mật khẩu xác nhận" id="register-confirm" type="password") 
                                 button(type="submit" class="btn-action") Đăng ký tài khoản                            
 
