@@ -14,4 +14,4 @@ router.use('/members',membersRouter);
 router.use('/personal',personalRouter); // <- this route with be change to :id after complete login
 
 
-module.exports = router;
+module.exports = router;  
