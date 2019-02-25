@@ -1,5 +1,7 @@
 const conn = require('../config');
 var date = require('date-and-time');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 const shortid = require("shortid");
 
 module.exports.getScore = (req, res, next) => {
@@ -62,6 +64,7 @@ function escapeHtml(unsafe) {
         .replace(/\\(.)/mg, "$1");
 }
 module.exports.postEditProfile = function(req,res){
+    console.log(req.body)
     const data = req.body;
     data.name = escapeHtml(data.name);
     data.school = escapeHtml(data.school);
@@ -107,3 +110,30 @@ module.exports.index = (req,res)=>{
     });
 };
 
+
+
+module.exports.register = (req,res) =>{
+    res.render('../views/authorization/register.pug');
+}
+
+module.exports.postRegister = (req,res) =>{
+    bcrypt.hash(req.body.password,saltRounds,function(err,hash){
+        console.log(hash);
+        let tempId = shortid.generate();
+        let idUser = tempId.slice(0,6);
+
+        if(err) throw console.error('Hash error');
+        let sql = `call userRegister("${idUser}","${req.body.full_name}","${req.body.dob}",
+            "${req.body.school}","${req.body.address}","${req.body.avatar}",
+            "${req.body.phone_number}");
+        `
+        conn.query(sql,function(err,data){
+            if(err) throw console.error('cannot push to table user , sth were happen');
+            let sql2 = `call accountRegister("${idUser}","${req.body.user_name}","${hash}");`
+            conn.query(sql2,function(err,data){
+                if (err) throw console.error('cannot push to table account , sth were happen');
+            })
+        })  
+
+    })
+}; 
