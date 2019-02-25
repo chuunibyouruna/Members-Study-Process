@@ -7,6 +7,7 @@ insert into User value ('user02', 'Pham Hao', '1998-03-12', 'DHCT', 'Can Tho', '
 insert into User value ('user03', 'Pham Hoang', '1998-03-12', 'DHCT', 'Can Tho', 'user01');
 insert into User value ('user04', 'Pham H Hao', '1998-03-12', 'DHCT', 'Can Tho', 'ad0001');
 insert into User value ('user05', 'Pham Hoan Hao', '1998-03-12', 'DHCT', 'Can Tho', 'ad0001');
+
 insert into User value ('user06', 'Pham Hang Hao', '1998-03-12', 'DHCT', 'Can Tho', 'ad0001');
 insert into User value ('user07', 'Pham Hong Hao', '1998-03-12', 'DHCT', 'Can Tho', 'user01');
 insert into User value ('user08', 'Pham Hoangg Hao', '1998-03-12', 'DHCT', 'Can Tho', 'ad0001');
