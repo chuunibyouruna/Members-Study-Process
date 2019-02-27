@@ -16,6 +16,9 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
+DROP DATABASE `mydb`;
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 
 -- -----------------------------------------------------
 -- Table `mydb`.`TypeUser`
@@ -26,7 +29,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`TypeUser` (
   PRIMARY KEY (`idTypeUser`))
 ENGINE = InnoDB;
 
+SELECT * FROM TYPEUSER;
 
+INSERT INTO `mydb`.`TypeUser` 
+	VALUES ('01','Admin'),
+			('02','Maganer'),
+			 ('03','Member');
 -- -----------------------------------------------------
 -- Table `mydb`.`User`
 -- -----------------------------------------------------
@@ -34,21 +42,47 @@ CREATE TABLE IF NOT EXISTS `mydb`.`User` (
   `idUser` CHAR(6) NOT NULL,
   `FullName` VARCHAR(45) NULL,
   `DoB` DATE NULL,
-  `DateJoin` DATE NULL,
-  `Email`  VARCHAR(45) NOT NULL,
   `School` VARCHAR(45) NULL,
   `Address` VARCHAR(45) NULL,
+  `Avatar` VARCHAR(9999),
+  `DateJoin` DATETIME DEFAULT CURRENT_TIMESTAMP,
+  `PhoneNumber` varchar(10),
   `TypeUser_idTypeUser` CHAR(6) NOT NULL,
   PRIMARY KEY (`idUser`),
   CONSTRAINT `fk_User_TypeUser1`
     FOREIGN KEY (`TypeUser_idTypeUser`)
     REFERENCES `mydb`.`TypeUser` (`idTypeUser`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 
 ENGINE = InnoDB;
 
+INSERT INTO `mydb`.`User`
+	VALUES ('01','Nguyen Van A','1998-02-02','CodersTokyo CanTho','Avatar 1','Can Tho','2018-03-03','0123456789','03');
+INSERT INTO `mydb`.`User`
+	VALUES ('02','Nguyen Van B','1998-02-02','CodersTokyo CanTho','Avatar 2','Can Tho','2018-03-03','0123456789','03');
+INSERT INTO `mydb`.`User`
+	VALUES ('03','Nguyen Van C','1998-02-02','CodersTokyo CanTho','Avatar 3','Can Tho','2018-03-03','0123456789','03');
+INSERT INTO `mydb`.`User`
+	VALUES ('04','Nguyen Van D','1998-02-02','CodersTokyo CanTho','Avatar 4','Can Tho','2018-03-03','0123456789','03');
+INSERT INTO `mydb`.`User`
+	VALUES ('05','Nguyen Van E','1998-02-02','CodersTokyo CanTho','Avatar 5','Can Tho','2018-03-03','0123456789','03');
+INSERT INTO `mydb`.`User`
+	VALUES ('06','Nguyen Van F','1998-02-02','CodersTokyo CanTho','Avatar 6','Can Tho','2018-03-03','0123456789','03');
+INSERT INTO `mydb`.`User`
+	VALUES ('07','Nguyen Van G','1998-02-02','CodersTokyo CanTho','Avatar 7','Can Tho','2018-03-03','0123456789','03');
+INSERT INTO `mydb`.`User`
+	VALUES ('08','Nguyen Van H','1998-02-02','CodersTokyo CanTho','Avatar 8','Can Tho','2018-03-03','0123456789','03');
+INSERT INTO `mydb`.`User`
+	VALUES ('09','Nguyen Van I','1998-02-02','CodersTokyo CanTho','Avatar 9','Can Tho','2018-03-03','0123456789','03');
+INSERT INTO `mydb`.`User`
+	VALUES ('10','Nguyen Van J','1998-02-02','CodersTokyo CanTho','Avatar 10','Can Tho','2018-03-03','0123456789','03');
+INSERT INTO `mydb`.`User`
+	VALUES ('11','Nguyen Van Admin','1998-02-02','CodersTokyo CanTho','Avatar Admin','Can Tho','2018-03-03','0123456789','01');
+INSERT INTO `mydb`.`User`
+	VALUES ('12','Nguyen Van Manager','1998-02-02','CodersTokyo CanTho','Avatar Manager','Can Tho','2018-03-03','0123456789','02');
 
+SELECT * FROM USER;
 -- -----------------------------------------------------
 -- Table `mydb`.`Course`
 -- -----------------------------------------------------
@@ -59,7 +93,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Course` (
   PRIMARY KEY (`idCourse`))
 ENGINE = InnoDB;
 
+INSERT INTO `mydb`.`Course`
+	VALUES ('HTML','HTML for dummies',23);
+INSERT INTO `mydb`.`Course`
+	VALUES ('CSS','Master CSS 2018',42);
+INSERT INTO `mydb`.`Course`
+	VALUES ('JS','JS A-Z 2018',52);
+INSERT INTO `mydb`.`Course`
+	VALUES ('GITHUB','Github form zero to hero',18);
 
+SELECT * FROM Course;
 -- -----------------------------------------------------
 -- Table `mydb`.`UserRecord`
 -- -----------------------------------------------------
@@ -72,16 +115,39 @@ CREATE TABLE IF NOT EXISTS `mydb`.`UserRecord` (
   CONSTRAINT `fk_UserRecord_User1`
     FOREIGN KEY (`User_idUser`)
     REFERENCES `mydb`.`User` (`idUser`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_UserRecord_Course1`
     FOREIGN KEY (`Course_idCourse`)
     REFERENCES `mydb`.`Course` (`idCourse`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-
+INSERT INTO `mydb`.`UserRecord`
+	VALUES ('HTML','01',1,10);
+INSERT INTO `mydb`.`UserRecord`
+	VALUES ('HTML','01',2,5);
+INSERT INTO `mydb`.`UserRecord`
+	VALUES ('CSS','01',1,7);
+INSERT INTO `mydb`.`UserRecord`
+	VALUES ('JS','01',1,2);
+INSERT INTO `mydb`.`UserRecord`
+	VALUES ('HTML','02',1,5);
+INSERT INTO `mydb`.`UserRecord`
+	VALUES ('HTML','02',2,3);
+INSERT INTO `mydb`.`UserRecord`
+	VALUES ('CSS','02',1,9);
+INSERT INTO `mydb`.`UserRecord`
+	VALUES ('HTML','03',1,8);
+INSERT INTO `mydb`.`UserRecord`
+	VALUES ('HTML','03',2,8);
+INSERT INTO `mydb`.`UserRecord`
+	VALUES ('CSS','03',1,9);
+INSERT INTO `mydb`.`UserRecord`
+	VALUES ('JS','03',1,6);
+INSERT INTO `mydb`.`UserRecord`
+	VALUES ('JS','03',2,10);
 -- -----------------------------------------------------
 -- Table `mydb`.`Topic`
 -- -----------------------------------------------------
@@ -98,7 +164,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`TopicSharing` (
   `idTopicSharing` CHAR(10) NOT NULL,
   `Title` VARCHAR(45) NULL,
-  `DateUpload` DATE NULL,
+  `DateUpload` DATETIME DEFAULT CURRENT_TIMESTAMP,
   `Author` VARCHAR(45) NULL,
   `Link` VARCHAR(100) NULL,
   `Description` VARCHAR(500) NULL,
@@ -107,8 +173,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`TopicSharing` (
   CONSTRAINT `fk_TopicSharing_Topic1`
     FOREIGN KEY (`Topic_idTopic`)
     REFERENCES `mydb`.`Topic` (`idTopic`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -126,8 +192,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`CodeDetail` (
   CONSTRAINT `fk_CodeDetail_UserRecord1`
     FOREIGN KEY (`UserRecord_Course_idCourse` , `UserRecord_User_idUser` , `UserRecord_Lession`)
     REFERENCES `mydb`.`UserRecord` (`Course_idCourse` , `User_idUser` , `Lession`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -141,10 +207,32 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Score` (
   CONSTRAINT `fk_Rank_User1`
     FOREIGN KEY (`User_idUser`)
     REFERENCES `mydb`.`User` (`idUser`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+INSERT INTO `mydb`.`Score`
+	VALUES ('01',230);
+INSERT INTO `mydb`.`Score`
+	VALUES ('02',123);
+INSERT INTO `mydb`.`Score`
+	VALUES ('03',432);
+INSERT INTO `mydb`.`Score`
+	VALUES ('04',333);
+INSERT INTO `mydb`.`Score`
+	VALUES ('05',551);
+INSERT INTO `mydb`.`Score`
+	VALUES ('06',666);
+INSERT INTO `mydb`.`Score`
+	VALUES ('07',122);
+INSERT INTO `mydb`.`Score`
+	VALUES ('08',90);
+INSERT INTO `mydb`.`Score`
+	VALUES ('09',611);
+INSERT INTO `mydb`.`Score`
+	VALUES ('10',1);
+
+SELECT * FROM `mydb`.`Score`;
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Account`
@@ -157,10 +245,30 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Account` (
   CONSTRAINT `fk_Account_User1`
     FOREIGN KEY (`User_idUser`)
     REFERENCES `mydb`.`User` (`idUser`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+INSERT INTO `mydb`.`Account`
+	VALUES ('01','nguyenvana@gmail.com','123456');
+INSERT INTO `mydb`.`Account`
+	VALUES ('02','nguyenvanb@gmail.com','123456');
+INSERT INTO `mydb`.`Account`
+	VALUES ('03','nguyenvanc@gmail.com','123456');
+INSERT INTO `mydb`.`Account`
+	VALUES ('04','nguyenvand@gmail.com','123456');
+INSERT INTO `mydb`.`Account`
+	VALUES ('05','nguyenvane@gmail.com','123456');
+INSERT INTO `mydb`.`Account`
+	VALUES ('06','nguyenvanf@gmail.com','123456');
+INSERT INTO `mydb`.`Account`
+	VALUES ('07','nguyenvang@gmail.com','123456');
+INSERT INTO `mydb`.`Account`
+	VALUES ('08','nguyenvanh@gmail.com','123456');
+INSERT INTO `mydb`.`Account`
+	VALUES ('09','nguyenvani@gmail.com','123456');
+INSERT INTO `mydb`.`Account`
+	VALUES ('10','nguyenvanj@gmail.com','123456');
 
 -- -----------------------------------------------------
 -- Table `mydb`.`Privilege`
@@ -175,11 +283,17 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Privilege` (
   CONSTRAINT `fk_Privilege_TypeUser1`
     FOREIGN KEY (`TypeUser_idTypeUser`)
     REFERENCES `mydb`.`TypeUser` (`idTypeUser`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-
+INSERT INTO `mydb`.`Privilege`
+	VALUES ('01',TRUE,TRUE,TRUE,TRUE);
+INSERT INTO `mydb`.`Privilege`
+	VALUES ('02',TRUE,TRUE,TRUE,FALSE);
+INSERT INTO `mydb`.`Privilege`
+	VALUES ('03',FALSE,TRUE,FALSE,FALSE);
+    
 -- -----------------------------------------------------
 -- Table `mydb`.`CourseDetail`
 -- -----------------------------------------------------
@@ -190,10 +304,70 @@ CREATE TABLE IF NOT EXISTS `mydb`.`CourseDetail` (
   CONSTRAINT `fk_CourseDetail_Course1`
     FOREIGN KEY (`Course_idCourse`)
     REFERENCES `mydb`.`Course` (`idCourse`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+INSERT INTO `mydb`.`CourseDetail`
+	VALUES ('HTML','Bai 1',1),
+			('HTML','Bai 2',2),
+            ('HTML','Bai 3',3),
+            ('HTML','Bai 4',4),
+            ('HTML','Bai 5',5),
+            ('HTML','Bai 6',6),
+            ('CSS','Bai 1',1),
+            ('CSS','Bai 2',2),
+            ('CSS','Bai 3',3),
+            ('JS','Bai 1',1),
+            ('JS','Bai 2',2),
+            ('GITHUB','Bai 1',1);
+
+
+/*PROCEDURE*/
+-- --DROP PROCEDURE GetTopPoint
+DROP procedure ShowUser;
+delimiter :)
+create procedure ShowUser()
+begin
+	select * from User join UserRecord on User.idUser = UserRecord.User_idUser order by User.idUser asc;
+end:)
+delimiter $$
+
+CREATE PROCEDURE GetTopPoint(NumberGet integer)
+    BEGIN
+	SELECT Avatar,FullName,Score FROM User JOIN Score ON Score.User_idUser = User.idUser
+    ORDER BY Score.score DESC LIMIT NumberGet ;
+	END$$
+
+delimiter ;
+call ShowUser;
+delimiter $$
+CREATE PROCEDURE getUserProfile(id varchar(45))
+    BEGIN
+        SELECT * FROM User WHERE idUser = id;
+    END; $$
+delimiter ;
+
+delimiter $$
+CREATE PROCEDURE updateUser(name varchar(45),birthday DATE,school varchar(45),address varchar(45),id CHAR(6))
+    BEGIN
+        UPDATE User SET FullName = name, DoB = birthday, School = school, Address = address WHERE idUser = id ;
+    END; $$
+delimiter ;
+
+
+delimiter $$
+CREATE PROCEDURE UserRegister(Name varchar(45),DoB Date,School varchar(45),Address varchar(45),Avatar varchar(9999),PhoneNumber varchar(45))
+    BEGIN
+        INSERT INTO User(FullName,DoB,School,Address,Avatar,PhoneNumber)
+        VALUES (Name,DoB,School,Address,Avatar,PhoneNumber);
+    END; $$
+-- CREATE PROCEDURE UserRegister(Name varchar(45),DoB Date,School varchar(45),Address varchar(45),Email varchar(45),Avatar varchar(9999),PhoneNumber varchar(45))
+--     BEGIN
+--         INSERT INTO User(FullName,DoB,School,Address,Avatar,PhoneNumber,Email)
+--         VALUES (Name,DoB,School,Address,Avatar,PhoneNumber,Email);
+--     END; $$
+delimiter ;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
