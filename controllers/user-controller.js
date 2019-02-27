@@ -29,7 +29,7 @@ module.exports.getScores =  (req, res, next) => {
 }
 
 function getDefaultDate(now){
-
+    console.log(`date ${now} ${typeof now}`)
     var day = ("0" + now.getDate()).slice(-2);
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
     var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
@@ -42,12 +42,14 @@ module.exports.editProfile =async function (req,res) {
     // CALL getUserProfile('05')
     const sql = "call getUserProfile('"+id+"')";
     await conn.query(sql,async function(err,users,field){
+        console.log(users);
         let user = users[0][0];
+        
         if(!err){
             user.DoB = getDefaultDate(user.DoB);
             user.DateJoin = getDefaultDate(user.DateJoin);
             res.render("users/edit-profile",{
-                user: user
+                user: user 
             })
         }
     });
@@ -91,8 +93,13 @@ module.exports.indexMembersPage = function(req,res){
             // console.log(result[0]);
 			for(var i in result[0]){
 				result[0][i].DoB = date.format(result[0][i].DoB,'YYYY-MM-DD');
-			}
-			res.render('user/index', {users: result[0].splice(start,end), n: pages, current: currentPage});
+            }
+            console.log(result);
+            res.render('user/index', {
+                users: result[0].splice(start,end),
+                n: pages,
+                current: currentPage
+                });
     });
 };
 
@@ -104,10 +111,11 @@ module.exports.index = (req,res)=>{
         if(err) throw err;
         console.log(result);
         topUsers = result;
+        res.render('personal-page/index',{
+            topUser: topUsers[0]
+        });
     });
-    res.render('../views/index',{
-        topUsers: topUsers
-    });
+    
 };
 
 

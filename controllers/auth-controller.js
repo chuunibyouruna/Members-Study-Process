@@ -28,7 +28,7 @@ module.exports.postLogin = (req,res) =>{
                     
                 }
                 else{
-                    console.log('wrong password')
+                    console.log('wrong password');
                 }
             });
         }) 
@@ -38,6 +38,7 @@ module.exports.postLogin = (req,res) =>{
     }
 }
 
+//use this middleware to take information of token
 function verifyToken(req,res,next){
     //get auth header value
     const bearerHeader = req.header['authorization'];
