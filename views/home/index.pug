@@ -82,6 +82,7 @@ block content
                         a(class="nav-link" data-role-tab="#logTab" data-toggle-tab="#register-form") Đăng ký
             div(class="modal-body")
                 div(class="tab-content" id="logTab")
+                
                     div(class="tab-pane active fade" id="login-form")
                         h5(class="tab-title") Đăng nhập               
                         div(class="tab-pane-content")    
@@ -89,12 +90,10 @@ block content
                                 img(src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signup-image.jpg")     
                             form(action="", method="post" class="left")
                                 div(class="form-group")
-                                    label(for="login-name") 
-                                        i(class="fa fa-user-o")
+                                    label(for="login-name") Tên đăng nhập
                                     input(placeholder='Nhập tên đăng nhập' class="form-control" id="login-name")
                                 div(class="form-group")
-                                    label(for="login-password") 
-                                        i(class="fa fa-lock")
+                                    label(for="login-password") Mật khẩu
                                     input(class="form-control" placeholder="Nhập mật khẩu" id="login-password" type="password") 
                                 button(type="submit" class="btn-action") Đăng nhập                            
 
@@ -105,20 +104,16 @@ block content
                                 img(src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg")
                             form(action="", method="post" class="right")
                                 div(class="form-group")
-                                    label(for="register-fullName") 
-                                        i(class="fa fa-odnoklassniki")
-                                    input(placeholder='Nhập họ tên' class="form-control" id="register-fullName")
+                                    label(for="register-fullName") Họ và tên
+                                    input(placeholder='Nhập họ và tên' class="form-control" id="register-fullName")
                                 div(class="form-group")
-                                    label(for="register-name") 
-                                        i(class="fa fa-user-o")
-                                    input(placeholder='Nhập tên đăng ký' class="form-control" id="register-name")
+                                    label(for="register-name") Tên đăng nhập
+                                    input(placeholder='Nhập tên đăng nhập' class="form-control" id="register-name")
                                 div(class="form-group")
-                                    label(for="register-password") 
-                                        i(class="fa fa-lock")
+                                    label(for="register-password") Mật khẩu
                                     input(class="form-control" placeholder="Nhập mật khẩu" id="register-password" type="password") 
                                 div(class="form-group")
-                                    label(for="register-confirm") 
-                                        i(class="fa fa-expeditedssl")
+                                    label(for="register-confirm") Mật khẩu xác thực
                                     input(class="form-control" placeholder="Nhập mật khẩu xác nhận" id="register-confirm" type="password") 
                                 button(type="submit" class="btn-action") Đăng ký tài khoản                            
 

@@ -9,11 +9,11 @@
 
 .home-advantages .advantages-list .advantages-item{
     display: grid;
-    align-items: center;
+    align-items: top;
     grid-template-columns: 1fr 1fr;
     grid-gap: 50px;
-    margin-bottom: 10rem;
-    margin-top: 10rem;
+    margin-bottom: 7rem;
+    margin-top: 7rem;
 }
 
 .home-advantages .advantages-list .advantages-item .left{
@@ -26,7 +26,7 @@
 
 .home-advantages .advantages-list .advantages-item img{
     width: 100%;
-    height: 450px;
+    height: 430px;
 }
 
 .home-advantages .advantages-list .advantages-item p{
