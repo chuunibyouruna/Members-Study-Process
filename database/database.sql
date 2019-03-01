@@ -22,14 +22,14 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 
 -- -----------------------------------------------------
 -- Table `mydb`.`TypeUser`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`TypeUser` (
   `idTypeUser` CHAR(6) NOT NULL,
   `NameOfType` VARCHAR(45) NULL,
   PRIMARY KEY (`idTypeUser`))
 ENGINE = InnoDB;
 
-SELECT * FROM TYPEUSER;
+SELECT * FROM TYPEUSER;- -----------------------------------------------------
+
 
 INSERT INTO `mydb`.`TypeUser` 
 	VALUES ('01','Admin'),
@@ -195,10 +195,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`CodeDetail` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
-
-
+INSERT INTO `mydb`.`CodeDetail`
+  VALUES('HTML','01','2','','----','Y');
 -- -----------------------------------------------------
--- Table `mydb`.`Score`
+-- Table `mydb`.`LinkContentScore`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Score` (
   `User_idUser` CHAR(6) NOT NULL,
@@ -219,7 +219,7 @@ INSERT INTO `mydb`.`Score`
 	VALUES ('03',432);
 INSERT INTO `mydb`.`Score`
 	VALUES ('04',333);
-INSERT INTO `mydb`.`Score`
+INSERT INTO `mydb`.`Score`VARCHAR(9999)
 	VALUES ('05',551);
 INSERT INTO `mydb`.`Score`
 	VALUES ('06',666);
@@ -235,7 +235,7 @@ INSERT INTO `mydb`.`Score`
 SELECT * FROM `mydb`.`Score`;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Account`
+-- Table `mydb`.`Account`VARCHAR(9999)
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Account` (
   `User_idUser` CHAR(6) NOT NULL,
@@ -247,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Account` (
     REFERENCES `mydb`.`User` (`idUser`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
-ENGINE = InnoDB;
+ENGINE = InnoDB;LinkContent
 
 INSERT INTO `mydb`.`Account`
 	VALUES ('01','nguyenvana@gmail.com','123456');
@@ -333,11 +333,13 @@ begin
 end:)
 delimiter $$
 
+delimiter :)
 CREATE PROCEDURE GetTopPoint(NumberGet integer)
     BEGIN
 	SELECT Avatar,FullName,Score FROM User JOIN Score ON Score.User_idUser = User.idUser
     ORDER BY Score.score DESC LIMIT NumberGet ;
-	END$$
+	END:)
+  delimiter $$
 
 delimiter ;
 call ShowUser;
@@ -347,6 +349,22 @@ CREATE PROCEDURE getUserProfile(id varchar(45))
         SELECT * FROM User WHERE idUser = id;
     END; $$
 delimiter ;
+
+delimiter $$
+CREATE PROCEDURE getState(idUser varchar(6), idLession varchar(10))
+    BEGIN
+      SELECT * FROM CodeDetail WHERE UserRecord_User_idUser = idUser AND UserRecord_Course_idCourse = idLession;
+    END; $$
+
+  delimiter;
+
+
+delimiter $$
+CREATE PROCEDURE postLink(idUser varchar(6), idLession varchar(10), link varchar(9999))
+    BEGIN
+      UPDATE CodeDetail SET LinkContent = link WHERE UserRecord_User_idUser = idUser AND UserRecord_Course_idCourse = idLession;
+    END; $$
+  delimiter;
 
 delimiter $$
 CREATE PROCEDURE updateUser(name varchar(45),birthday DATE,school varchar(45),address varchar(45),id CHAR(6))

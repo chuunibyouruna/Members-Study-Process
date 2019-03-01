@@ -3,6 +3,8 @@ var date = require('date-and-time');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const shortid = require("shortid");
+const privateKey = 'Coders.Tokyo';
+const jwt = require('jsonwebtoken');
 
 module.exports.getScore = (req, res, next) => {
 	let id = req.params.id;
@@ -108,11 +110,10 @@ module.exports.index = (req,res)=>{
     var topUsers = "";
         sql = "CALL GetTopPoint(10)";
     conn.query(sql,(err,result)=>{
-        if(err) throw err;
-        console.log(result);
-        topUsers = result;
+        if(err) console.error("Error");
+        topUsers = result[0];
         res.render('personal-page/index',{
-            topUser: topUsers[0]
+            topUser: topUsers
         });
     });
     
@@ -145,3 +146,56 @@ module.exports.postRegister = (req,res) =>{
 
     })
 }; 
+module.exports.stateExercise = (req,res) => {
+
+    jwt.verify(req.token, privateKey, (err,user) =>{
+        if(err){
+            res.sendStatus(403);
+        }else{
+            const idLession = req.params.lession;
+            const idUser = user.User_idUser
+            let sql = `call getState("${idUser}","${idLession}")`;
+            conn.query(sql,(err,data)=>{
+                if(err) throw err;
+                res.send(data[0][0].State);
+            });
+        }
+    });
+};
+module.exports.postExcercise = (req,res) => {
+    const data = req.body;
+    jwt.verify(req.token, privateKey, (err,user) =>{
+        if(err){
+            res.sendStatus(403);
+        }else{
+            const idLession = data.lession;
+            const idUser = user.User_idUser;
+            const link = data.link;
+            const sql = `call postLink("${idUser}","${idLession}","${link}")`;
+            conn.query(sql,(err)=>{
+                if(err) throw err;
+                res.json({state:'success'});
+            });
+        }
+    });
+};
+//use this middleware to take information of token
+function verifyToken(req,res,next){
+    //get auth header value
+    const bearerHeader = req.header['authorization'];
+    //check if bearer is undefined
+    if(typeof bearerHeader !== 'undefined'){
+        //Split at the space
+        const bearer = bearerHeader.split(' ');
+        //get token from array
+        const bearerToken = bearer[1];
+        //Set the token
+        req.token = bearerToken;
+        //Next middleware
+        next();
+    }
+    else{
+        //Forbidden
+        res.sendStatus(403);
+    }
+}
