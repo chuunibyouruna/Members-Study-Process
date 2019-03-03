@@ -31,7 +31,7 @@ module.exports.getScores =  (req, res, next) => {
 }
 
 function getDefaultDate(now){
-    console.log(`date ${now} ${typeof now}`)
+    console.log(`date ${now} ${typeof now}`);
     var day = ("0" + now.getDate()).slice(-2);
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
     var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
@@ -40,19 +40,16 @@ function getDefaultDate(now){
 
 module.exports.editProfile =async function (req,res) {
     const id = req.params.id;
-    // const  sql = "SELECT * FROM User WHERE idUser = '"+id+"'";
-    // CALL getUserProfile('05')
     const sql = "call getUserProfile('"+id+"')";
     await conn.query(sql,async function(err,users,field){
-        console.log(users);
         let user = users[0][0];
-
         if(!err){
             user.DoB = getDefaultDate(user.DoB);
             user.DateJoin = getDefaultDate(user.DateJoin);
-            res.render("users/edit-profile",{
-                user: user
-            })
+            res.json({user: user});
+            // res.render("users/edit-profile",{
+            //     user: user
+            // })
         }
     });
     // res.render("users/edit-profile");
@@ -68,7 +65,7 @@ function escapeHtml(unsafe) {
         .replace(/\\(.)/mg, "$1");
 }
 module.exports.postEditProfile = function(req,res){
-    console.log(req.body)
+    // console.log(req.body);
     const data = req.body;
     data.name = escapeHtml(data.name);
     data.school = escapeHtml(data.school);
@@ -116,6 +113,7 @@ module.exports.index = (req,res)=>{
             topUser: topUsers
         });
     });
+    // var sql = " UPDATE User SET FullName = '"+data.name+"', DoB = '"+data.birthday+"', School = '"+data.school+"', Address = '"+data.address+"' WHERE idUser = '"+data.id+"'" ;
 
 };
 
