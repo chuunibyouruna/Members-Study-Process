@@ -1,280 +1,293 @@
-extends ../layouts/layout
-block content
-    nav(class="navbar")
-        a(href="#", class="nav-link nav-brand")
-            img(src="/img/logo.png")
-        div(class="action-group")
-            input(id="toogle-sidebar" type="checkbox")
-            label(class="btn-toogle-sidebar" for="toogle-sidebar") 
-                i(class="fa fa-bars")
-            //- SIDEBAR MOBILE
-            div(id="sidebar-m")       
-                div(class="sidebar-header")                    
-                    button(class="btn-action btnToggleModal" data-target="#logModal") Đăng ký / đăng nhập
-                    input(id="toggle-dropdown-account-m" type="checkbox")
-                    label(class="account-wrapper-m" for="toggle-dropdown-account-m")
-                        img(class="avatar-m" src="http://localhost:3000/img/avatar.png") 
-                        p Hi, 
-                        span Dang Quoc Dung 
-                    div(id="dropdown-account-m")
-                        ul
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css")
+        link(href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet")
+        link(href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet")
+        link(rel="stylesheet", href="/css/home.css")      
+        title My Site - #{title}
+    body
+        nav(class="navbar")
+            a(href="#", class="nav-link nav-brand")
+                img(src="/img/logo.png")
+            div(class="action-group")
+                input(id="toogle-sidebar" type="checkbox")
+                label(class="btn-toogle-sidebar" for="toogle-sidebar") 
+                    i(class="fa fa-bars")
+                //- SIDEBAR MOBILE
+                div(id="sidebar-m")       
+                    div(class="sidebar-header")                    
+                        button(class="btn-action btnToggleModal" data-target="#logModal") Đăng ký / đăng nhập
+                        input(id="toggle-dropdown-account-m" type="checkbox")
+                        label(class="account-wrapper-m" for="toggle-dropdown-account-m")
+                            img(class="avatar-m" src="http://localhost:3000/img/avatar.png") 
+                            p Hi, 
+                            span Dang Quoc Dung 
+                        div(id="dropdown-account-m")
+                            ul
+                                li
+                                    a(class="nav-link" href="#") 
+                                        i(class="fa fa-user")
+                                        span Thông tin tài khoản
+                                li
+                                    a(class="nav-link" href="#") 
+                                        i(class="fa fa-lock")
+                                        span Đổi mật khẩu
+                                li
+                                    a(class="nav-link" href="#") 
+                                        i(class="fa fa-sign-out")
+                                        span Đăng xuất
+                    div(class="sidebar-body")
+                        ul(class="sidebar-link-group")           
                             li
-                                a(class="nav-link" href="#") 
-                                    i(class="fa fa-user")
-                                    span Thông tin tài khoản
+                                a(href="#" class="nav-link")
+                                    i(class="fa fa-home")
+                                    span Trang chủ                  
                             li
-                                a(class="nav-link" href="#") 
-                                    i(class="fa fa-lock")
-                                    span Đổi mật khẩu
+                                a(href="#" class="nav-link")
+                                    i(class="fa fa-users")
+                                    span Thành viên
                             li
-                                a(class="nav-link" href="#") 
-                                    i(class="fa fa-sign-out")
-                                    span Đăng xuất
-                div(class="sidebar-body")
-                    ul(class="sidebar-link-group")           
-                        li
-                            a(href="#" class="nav-link")
-                                i(class="fa fa-home")
-                                span Trang chủ                  
-                        li
-                            a(href="#" class="nav-link")
-                                i(class="fa fa-users")
-                                span Thành viên
-                        li
-                            a(href="#" class="nav-link")
-                                i(class="fa fa-user-plus")
-                                span Team
-                        li
-                            a(href="#" class="nav-link")
-                                i(class="fa fa-book")
-                                span Bài tập                
-                            
-            ul(class="link-group")
-                li
-                    a(href="#" class="nav-link") Trang chủ
-                li
-                    a(href="#" class="nav-link") Thành viên
-                li
-                    a(href="#" class="nav-link") Team
-                li
-                    a(href="#" class="nav-link") Bài tập
-            button(class="btn-action btnToggleModal" data-target="#logModal") Đăng ký / đăng nhập  
-            label(class="btn-toogle-dropdown" for="toggle-dropdown-account")
-                img(src="http://localhost:3000/img/avatar.png")
-            input(id="toggle-dropdown-account" type="checkbox")
-            div(id="dropdown-account")
-                ul
-                    li
-                        a(class="nav-link" href="#") Thông tin tài khoản
-                    li
-                        a(class="nav-link" href="#") Đổi mật khẩu
-                    li
-                        a(class="nav-link" href="#") Đăng xuất
-          
-    div(class="modal" id="logModal" )
-        div(class="modal-content")
-            span(class="close") &times;
-            div(class="modal-header")
-                ul(class="nav-tabs")
-                    li(class="nav-item")
-                        a(class="nav-link active" data-role-tab="#logTab" data-toggle-tab="#login-form") Đăng nhập
-                    li(class="nav-item")
-                        a(class="nav-link" data-role-tab="#logTab" data-toggle-tab="#register-form") Đăng ký
-            div(class="modal-body")
-                div(class="tab-content" id="logTab")
-                
-                    div(class="tab-pane active fade" id="login-form")
-                        h5(class="tab-title") Đăng nhập               
-                        div(class="tab-pane-content")    
-                            div(class="img-container right")
-                                img(src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signup-image.jpg")     
-                            form(action="", method="post" class="left")
-                                div(class="form-group")
-                                    label(for="login-name") Tên đăng nhập
-                                    input(placeholder='Nhập tên đăng nhập' class="form-control" id="login-name")
-                                div(class="form-group")
-                                    label(for="login-password") Mật khẩu
-                                    input(class="form-control" placeholder="Nhập mật khẩu" id="login-password" type="password") 
-                                button(type="submit" class="btn-action") Đăng nhập                            
-
-                    div(class="tab-pane fade" id="register-form")
-                        h5(class="tab-title") Đăng ký
-                        div(class="tab-pane-content")         
-                            div(class="img-container left")
-                                img(src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg")
-                            form(action="", method="post" class="right")
-                                div(class="form-group")
-                                    label(for="register-fullName") Họ và tên
-                                    input(placeholder='Nhập họ và tên' class="form-control" id="register-fullName")
-                                div(class="form-group")
-                                    label(for="register-name") Tên đăng nhập
-                                    input(placeholder='Nhập tên đăng nhập' class="form-control" id="register-name")
-                                div(class="form-group")
-                                    label(for="register-password") Mật khẩu
-                                    input(class="form-control" placeholder="Nhập mật khẩu" id="register-password" type="password") 
-                                div(class="form-group")
-                                    label(for="register-confirm") Mật khẩu xác thực
-                                    input(class="form-control" placeholder="Nhập mật khẩu xác nhận" id="register-confirm" type="password") 
-                                button(type="submit" class="btn-action") Đăng ký tài khoản                            
-
-    section(class="dashboard-member")
-        div(class="container")
-            ul(class="dashboard-member-list")
-                p(class="dashboard-title") Dashboard member
-                li(class="dashboard-item")  
-                    div(class="dashboard-member")
-                        b(class="member-index") 1
-                        img(class="member-avatar" src="/img/avatar.png")
-                        span(class="member-name") Đặng Quốc Dũng
-                    p(class="dashboard-score") 969   
-
-                li(class="dashboard-item")  
-                    div(class="dashboard-member")
-                        b(class="member-index") 1
-                        img(class="member-avatar" src="/img/avatar.png")
-                        span(class="member-name") Đặng Quốc Dũng
-                    p(class="dashboard-score") 969 
-
-                li(class="dashboard-item")  
-                    div(class="dashboard-member")
-                        b(class="member-index") 1
-                        img(class="member-avatar" src="/img/avatar.png")
-                        span(class="member-name") Đặng Quốc Dũng
-                    p(class="dashboard-score") 969 
-
-                li(class="dashboard-item")  
-                    div(class="dashboard-member")
-                        b(class="member-index") 1
-                        img(class="member-avatar" src="/img/avatar.png")
-                        span(class="member-name") Đặng Quốc Dũng
-                    p(class="dashboard-score") 969   
-
-                li(class="dashboard-item")  
-                    div(class="dashboard-member")
-                        b(class="member-index") 1
-                        img(class="member-avatar" src="/img/avatar.png")
-                        span(class="member-name") Đặng Quốc Dũng
-                    p(class="dashboard-score") 969
-
-                li(class="dashboard-item")  
-                    div(class="dashboard-member")
-                        b(class="member-index") 1
-                        img(class="member-avatar" src="/img/avatar.png")
-                        span(class="member-name") Đặng Quốc Dũng
-                    p(class="dashboard-score") 969
-
-                li(class="dashboard-item")  
-                    div(class="dashboard-member")
-                        b(class="member-index") 1
-                        img(class="member-avatar" src="/img/avatar.png")
-                        span(class="member-name") Đặng Quốc Dũng
-                    p(class="dashboard-score") 969
-
-                li(class="dashboard-item")  
-                    div(class="dashboard-member")
-                        b(class="member-index") 1
-                        img(class="member-avatar" src="/img/avatar.png")
-                        span(class="member-name") Đặng Quốc Dũng
-                    p(class="dashboard-score") 969
-
-                li(class="dashboard-item")  
-                    div(class="dashboard-member")
-                        b(class="member-index") 1
-                        img(class="member-avatar" src="/img/avatar.png")
-                        span(class="member-name") Đặng Quốc Dũng
-                    p(class="dashboard-score") 969
-
-                li(class="dashboard-item")  
-                    div(class="dashboard-member")
-                        b(class="member-index") 1
-                        img(class="member-avatar" src="/img/avatar.png")
-                        span(class="member-name") Đặng Quốc Dũng
-                    p(class="dashboard-score") 969
-
-    section(class="home-introduce")
-        div(class="container")
-            div(class="introduce-content")
-                div(class="img-wrapper")
-                    img(src="https://picsum.photos/550" with="100%")
-                div(class="content-wrapper")
-                    h1(class="title") About coders.tokyo Cần Thơ
-                    p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-
-    section(class="home-advantages container")
-        h1(class= "title") Lợi ích khi tham gia cộng đồng chúng tôi
-        div(class="advantages-content")
-            ul(class="advantages-list")
-                li(class="advantages-item")
-                    div(class="right")
-                        img(src="https://picsum.photos/350" )
-
-                    div(class="left")
-                        h1(class="sub-title") 
-                            span(class="index") 1 
-                            span Lorem ipsum lora
-                        p Lipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consequat libero. Vestibulum sapien risus, molestie ut aliquam nec, vulputate et purus. In eros eros, ullamcorper pretium mi sed, laoreet dapibus nibh. Phasellus eu libero eget nisl luctus ultricies. Aliquam a diam libero. Vivamus eu maud lacus placerat tincidunt. Curabitur vehicula 
-                                                    
-                li(class="advantages-item")
-                    div(class="left")
-                        img(src="https://picsum.photos/350" )
-
-                    div(class="right")
-                        h1(class="sub-title") 
-                            span(class="index") 1 
-                            span Lorem ipsum lora
-                        p Lipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consequat libero. Vestibulum sapien risus, molestie ut aliquam nec, vulputate et purus. In eros eros, ullamcorper pretium mi sed, laoreet dapibus nibh. Phasellus eu libero eget nisl luctus ultricies. Aliquam a diam libero. Vivamus eu maud lacus placerat tincidunt. Curabitur vehicula                                 
-
-                li(class="advantages-item")
-                    div(class="right")
-                        img(src="https://picsum.photos/400" )
-
-                    div(class="left")
-                        h1(class="sub-title") 
-                            span(class="index") 1 
-                            span Lorem ipsum lora
-                        p Lipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consequat libero. Vestibulum sapien risus, molestie ut aliquam nec, vulputate et purus. In eros eros, ullamcorper pretium mi sed, laoreet dapibus nibh. Phasellus eu libero eget nisl luctus ultricies. Aliquam a diam libero. Vivamus eu maud lacus placerat tincidunt. Curabitur vehicula 
-                            
-                    
-
-                li(class="advantages-item")
-                    div(class="left")
-                        img(src="https://picsum.photos/380" )
-
-                    div(class="right")
-                        h1(class="sub-title") 
-                            span(class="index") 1 
-                            span Lorem ipsum lora
-                        p Lipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consequat libero. Vestibulum sapien risus, molestie ut aliquam nec, vulputate et purus. In eros eros, ullamcorper pretium mi sed, laoreet dapibus nibh. Phasellus eu libero eget nisl luctus ultricies. Aliquam a diam libero. Vivamus eu maud lacus placerat tincidunt. Curabitur vehicula 
+                                a(href="#" class="nav-link")
+                                    i(class="fa fa-user-plus")
+                                    span Team
+                            li
+                                a(href="#" class="nav-link")
+                                    i(class="fa fa-book")
+                                    span Bài tập                
                                 
-    section(class="slide-show")
-        h1(class="title") Hình ảnh các buổi offline của cộng đồng
-        div(class="slider")
-            div(class="slide fade" )
-                img(src="https://picsum.photos/750" )  
-            div(class="slide fade" )
-                img(src="https://picsum.photos/700" ) 
-            div(class="slide fade" )
-                img(src="https://picsum.photos/800" )   
+                ul(class="link-group")
+                    li
+                        a(href="#" class="nav-link") Trang chủ
+                    li
+                        a(href="#" class="nav-link") Thành viên
+                    li
+                        a(href="#" class="nav-link") Team
+                    li
+                        a(href="#" class="nav-link") Bài tập
+                button(class="btn-action btnToggleModal" data-target="#logModal") Đăng ký / đăng nhập  
+                label(class="btn-toogle-dropdown" for="toggle-dropdown-account")
+                    img(src="http://localhost:3000/img/avatar.png")
+                input(id="toggle-dropdown-account" type="checkbox")
+                div(id="dropdown-account")
+                    ul
+                        li
+                            a(class="nav-link" href="#") Thông tin tài khoản
+                        li
+                            a(class="nav-link" href="#") Đổi mật khẩu
+                        li
+                            a(class="nav-link" href="#") Đăng xuất
+            
+        div(class="modal" id="logModal" )
+            div(class="modal-content")
+                span(class="close") &times;
+                div(class="modal-header")
+                    ul(class="nav-tabs")
+                        li(class="nav-item")
+                            a(class="nav-link active" data-role-tab="#logTab" data-toggle-tab="#login-form") Đăng nhập
+                        li(class="nav-item")
+                            a(class="nav-link" data-role-tab="#logTab" data-toggle-tab="#register-form") Đăng ký
+                div(class="modal-body")
+                    div(class="tab-content" id="logTab")
+                    
+                        div(class="tab-pane active fade" id="login-form")
+                            h5(class="tab-title") Đăng nhập               
+                            div(class="tab-pane-content")    
+                                div(class="img-container right")
+                                    img(src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signup-image.jpg")     
+                                form(action="", method="post" class="left")
+                                    div(class="form-group")
+                                        label(for="login-name") Tên đăng nhập
+                                        input(placeholder='Nhập tên đăng nhập' class="form-control" id="login-name")
+                                    div(class="form-group")
+                                        label(for="login-password") Mật khẩu
+                                        input(class="form-control" placeholder="Nhập mật khẩu" id="login-password" type="password") 
+                                    button(type="submit" class="btn-action") Đăng nhập                            
 
-            a(class="arrow prev" onclick="plusSlides(-1)") 
-                i(class="fa fa-angle-left")
-            a(class="arrow next" onclick="plusSlides(1)") 
-                i(class="fa fa-angle-right")
+                        div(class="tab-pane fade" id="register-form")
+                            h5(class="tab-title") Đăng ký
+                            div(class="tab-pane-content")         
+                                div(class="img-container left")
+                                    img(src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg")
+                                form(action="", method="post" class="right")
+                                    div(class="form-group")
+                                        label(for="register-fullName") Họ và tên
+                                        input(placeholder='Nhập họ và tên' class="form-control" id="register-fullName")
+                                    div(class="form-group")
+                                        label(for="register-name") Tên đăng nhập
+                                        input(placeholder='Nhập tên đăng nhập' class="form-control" id="register-name")
+                                    div(class="form-group")
+                                        label(for="register-password") Mật khẩu
+                                        input(class="form-control" placeholder="Nhập mật khẩu" id="register-password" type="password") 
+                                    div(class="form-group")
+                                        label(for="register-confirm") Mật khẩu xác thực
+                                        input(class="form-control" placeholder="Nhập mật khẩu xác nhận" id="register-confirm" type="password") 
+                                    button(type="submit" class="btn-action") Đăng ký tài khoản                            
 
-        div(class="dots-wrapper")
-            span(class="dot" onclick="currentSlide(1)")
-            span(class="dot" onclick="currentSlide(2)")
-            span(class="dot" onclick="currentSlide(3)")
+        section(class="dashboard-member")
+            div(class="container")
+                ul(class="dashboard-member-list")
+                    p(class="dashboard-title") Dashboard member
+                    li(class="dashboard-item")  
+                        div(class="dashboard-info")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969   
 
-    section(class="copy-right")
-        p Copy right by
-            span(class="coders")  Coders.
-                span(class="tokyo") Tokyo
-            span  Cần Thơ
+                    li(class="dashboard-item")  
+                        div(class="dashboard-info")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969 
 
-    block append script
-        script(src="/js/slider.js")  
-        script(src="/js/modal.js")   
-        script(src="/js/tab-pane.js")                
+                    li(class="dashboard-item")  
+                        div(class="dashboard-info")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969 
+
+                    li(class="dashboard-item")  
+                        div(class="dashboard-info")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969   
+
+                    li(class="dashboard-item")  
+                        div(class="dashboard-info")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969
+
+                    li(class="dashboard-item")  
+                        div(class="dashboard-info")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969
+
+                    li(class="dashboard-item")  
+                        div(class="dashboard-info")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969
+
+                    li(class="dashboard-item")  
+                        div(class="dashboard-info")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969
+
+                    li(class="dashboard-item")  
+                        div(class="dashboard-info")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969
+
+                    li(class="dashboard-item")  
+                        div(class="dashboard-info")
+                            b(class="member-index") 1
+                            img(class="member-avatar" src="/img/avatar.png")
+                            span(class="member-name") Đặng Quốc Dũng
+                        p(class="dashboard-score") 969
+
+        section(class="home-introduce")
+            div(class="container")
+                div(class="introduce-content")
+                    div(class="img-wrapper")
+                        img(src="https://picsum.photos/550" with="100%")
+                    div(class="content-wrapper")
+                        h1(class="title") About coders.tokyo Cần Thơ
+                        p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+        section(class="home-advantages container")
+            h1(class= "title") Lợi ích khi tham gia cộng đồng chúng tôi
+            div(class="advantages-content")
+                ul(class="advantages-list")
+                    li(class="advantages-item")
+                        div(class="right")
+                            img(src="https://picsum.photos/350" )
+
+                        div(class="left")
+                            h1(class="sub-title") 
+                                span(class="index") 1 
+                                span Lorem ipsum lora
+                            p Lipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consequat libero. Vestibulum sapien risus, molestie ut aliquam nec, vulputate et purus. In eros eros, ullamcorper pretium mi sed, laoreet dapibus nibh. Phasellus eu libero eget nisl luctus ultricies. Aliquam a diam libero. Vivamus eu maud lacus placerat tincidunt. Curabitur vehicula 
+                                                        
+                    li(class="advantages-item")
+                        div(class="left")
+                            img(src="https://picsum.photos/350" )
+
+                        div(class="right")
+                            h1(class="sub-title") 
+                                span(class="index") 1 
+                                span Lorem ipsum lora
+                            p Lipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consequat libero. Vestibulum sapien risus, molestie ut aliquam nec, vulputate et purus. In eros eros, ullamcorper pretium mi sed, laoreet dapibus nibh. Phasellus eu libero eget nisl luctus ultricies. Aliquam a diam libero. Vivamus eu maud lacus placerat tincidunt. Curabitur vehicula                                 
+
+                    li(class="advantages-item")
+                        div(class="right")
+                            img(src="https://picsum.photos/400" )
+
+                        div(class="left")
+                            h1(class="sub-title") 
+                                span(class="index") 1 
+                                span Lorem ipsum lora
+                            p Lipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consequat libero. Vestibulum sapien risus, molestie ut aliquam nec, vulputate et purus. In eros eros, ullamcorper pretium mi sed, laoreet dapibus nibh. Phasellus eu libero eget nisl luctus ultricies. Aliquam a diam libero. Vivamus eu maud lacus placerat tincidunt. Curabitur vehicula 
+                                
+                        
+
+                    li(class="advantages-item")
+                        div(class="left")
+                            img(src="https://picsum.photos/380" )
+
+                        div(class="right")
+                            h1(class="sub-title") 
+                                span(class="index") 1 
+                                span Lorem ipsum lora
+                            p Lipsum dolor sit amet, consectetur adipiscing elit. Aliquam nec consequat libero. Vestibulum sapien risus, molestie ut aliquam nec, vulputate et purus. In eros eros, ullamcorper pretium mi sed, laoreet dapibus nibh. Phasellus eu libero eget nisl luctus ultricies. Aliquam a diam libero. Vivamus eu maud lacus placerat tincidunt. Curabitur vehicula 
+                                    
+        section(class="slide-show")
+            h1(class="title") Hình ảnh các buổi offline của cộng đồng
+            div(class="slider")
+                div(class="slide fade" )
+                    img(src="https://picsum.photos/750" )  
+                div(class="slide fade" )
+                    img(src="https://picsum.photos/700" ) 
+                div(class="slide fade" )
+                    img(src="https://picsum.photos/800" )   
+
+                a(class="arrow prev" onclick="plusSlides(-1)") 
+                    i(class="fa fa-angle-left")
+                a(class="arrow next" onclick="plusSlides(1)") 
+                    i(class="fa fa-angle-right")
+
+            div(class="dots-wrapper")
+                span(class="dot" onclick="currentSlide(1)")
+                span(class="dot" onclick="currentSlide(2)")
+                span(class="dot" onclick="currentSlide(3)")
+
+        section(class="copy-right")
+            p Copy right by
+                span(class="coders")  Coders.
+                    span(class="tokyo") Tokyo
+                span  Cần Thơ
+        
+        button(id="btn-top" class="fade btn-top")
+            i(class="fa fa-arrow-circle-up")
+
+        script(src="/js/action/slider.js")  
+        script(src="/js/action/modal.js")   
+        script(src="/js/action/tab-pane.js")  
+        script(src="/js/action/btn-top.js")             
                         
 

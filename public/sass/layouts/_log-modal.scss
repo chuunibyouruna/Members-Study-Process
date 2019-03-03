@@ -1,0 +1,48 @@
+#logModal{
+    .tab-content{
+        .tab-title{
+            font-size: 1.6rem;
+            text-align: center;
+            font-weight: normal;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 0;
+        }
+        .tab-pane{
+            .tab-pane-content{
+                display: grid;
+                align-items: center;
+                grid-template-columns: 1fr 1fr;
+                grid-gap: 50px;
+                .img-container{
+                    img{
+                        width: 100%;
+                        max-width: 300px;
+                        height: 300px;
+                    }
+                }
+                &.left{
+                    order: 0;
+                }
+                &.right{
+                    order: 1;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 670px){
+    #logModal{
+        .tab-content{
+            .tab-pane{
+                .tab-pane-content{
+                    display: block;
+                    .img-container{
+                        margin-bottom: 2rem;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+.btn-action{
+    color: #fff;
+    background: $blue;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 0;
+    transition: all .3s;
+    cursor: pointer;
+    font-weight: bold;
+    &:hover{
+        background: $light-blue;
+    }
+}
+
+.btn-top{
+    display: block;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: transparent;
+    z-index: 100;
+    display: none;
+    i{
+        font-size: 2.3rem;
+        cursor: pointer;
+    }
+}
+

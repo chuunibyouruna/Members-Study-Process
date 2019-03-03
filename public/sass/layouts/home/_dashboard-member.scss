@@ -1,0 +1,60 @@
+.dashboard-member{
+    padding: 0;
+    .dashboard-member-list{
+        border: 1px solid rgba(0,0,0,0.1);
+        border-radius: 3px;
+        padding: 15px 20px;
+        .dashboard-title{
+            font-family: 'Montserrat', sans-serif;
+            font-size: .9rem;
+            margin-bottom: 1.3rem;
+        }
+        .dashboard-item{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .dashboard-info{
+                display: flex;
+                align-items: center;
+                .member-avatar{
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 50%;
+                    border:0;
+                    margin: 0 1rem;
+                }
+                .member-index{
+                    font-size: 1.6rem;
+                }
+                .member-name{
+                    font-size: 1.2rem;
+                    text-transform: capitalize;
+                }
+            }
+            .dashboard-score{
+                font-size: 1.3rem;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 568px){
+    .dashboard-member{
+        .dashboard-member-list{
+            .dashboard-item{
+                .dashboard-info{
+                    .member-index{
+                        font-size: 1.4rem;
+                    }
+                    .member-name{
+                        font-size: 1rem;
+                    }
+                }
+                .dashboard-score{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+}
