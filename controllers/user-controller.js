@@ -109,9 +109,9 @@ module.exports.index = (req,res)=>{
         sql = "CALL GetTopPoint(10)";
     conn.query(sql,(err,result)=>{
         if(err) throw err;
-        console.log(result);
         topUsers = result;
-        res.render('personal-page/index',{
+        console.log(topUsers[0]);
+        res.render('home/index',{
             topUser: topUsers[0]
         });
     });
