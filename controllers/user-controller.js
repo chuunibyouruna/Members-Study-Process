@@ -151,7 +151,7 @@ module.exports.stateExercise = (req,res) => {
         }else{
             const idCourse = req.params.course;
             const idLession = req.query.lession;
-            const idUser = '01';//user.User_idUser;
+            const idUser = user.User_idUser;
             let sql = `call getState("${idUser}","${idCourse}",${idLession})`;
             conn.query(sql,(err,data)=>{
                 if(err) throw err;
@@ -169,7 +169,7 @@ module.exports.postExcercise = (req,res) => {
         }else{
             const idCourse = req.params.course;
             const idLession = req.query.lession;
-            const idUser = '01';
+            const idUser = user.User_idUser;
             const link = data.link;
             const sql = `call postLink("${idUser}","${idCourse}",${idLession},"${link}")`;
             conn.query(sql,(err)=>{
