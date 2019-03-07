@@ -2,8 +2,23 @@
     animation: fade .5s ease;
 }
 
+.drop-top{
+    animation: drop-top .3s ease;
+}
+
 
 @keyframes fade {
     from {opacity: .4} 
     to {opacity: 1}
+}
+
+@keyframes drop-top{
+    from {
+        opacity: .4;
+        transform: scaleY(0);
+    } 
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
 }

@@ -48,12 +48,15 @@ section {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  background-color: transparent;
+  background-color: #4A90E2;
   z-index: 100;
-  display: none; }
+  display: none;
+  border-radius: 50%;
+  padding: 5px; }
   .btn-top i {
-    font-size: 2.3rem;
-    cursor: pointer; }
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.8); }
 
 .form-group {
   margin-bottom: 2rem;
@@ -73,6 +76,17 @@ section {
     margin: 0;
     margin-bottom: .3rem;
     text-transform: uppercase; }
+  .form-group .message {
+    font-size: .7rem;
+    margin-bottom: 0;
+    margin-top: 5px;
+    transform-origin: top;
+    display: none; }
+  .form-group.in-valid {
+    border: 1px solid #FF0000; }
+    .form-group.in-valid .message {
+      color: #FF0000;
+      display: block; }
 
 .form-control {
   display: block;
@@ -223,11 +237,21 @@ section {
 .fade {
   animation: fade .5s ease; }
 
+.drop-top {
+  animation: drop-top .3s ease; }
+
 @keyframes fade {
   from {
     opacity: .4; }
   to {
     opacity: 1; } }
+@keyframes drop-top {
+  from {
+    opacity: .4;
+    transform: scaleY(0); }
+  to {
+    opacity: 1;
+    transform: scaleY(1); } }
 .title {
   font-size: 2rem; }
 

@@ -11,7 +11,7 @@ html(lang="en")
         title My Site - #{title}
     body
         nav(class="navbar")
-            a(href="#", class="nav-link nav-brand")
+            a(href="http://localhost:3000/home", class="nav-link nav-brand")
                 img(src="/img/logo.png")
             div(class="action-group")
                 input(id="toogle-sidebar" type="checkbox")
@@ -87,44 +87,54 @@ html(lang="en")
                 div(class="modal-header")
                     ul(class="nav-tabs")
                         li(class="nav-item")
-                            a(class="nav-link active" data-role-tab="#logTab" data-toggle-tab="#login-form") Đăng nhập
+                            a(class="nav-link active" data-role-tab="#logTab" data-toggle-tab="#login-tab") Đăng nhập
                         li(class="nav-item")
-                            a(class="nav-link" data-role-tab="#logTab" data-toggle-tab="#register-form") Đăng ký
+                            a(class="nav-link" data-role-tab="#logTab" data-toggle-tab="#register-tab") Đăng ký
                 div(class="modal-body")
                     div(class="tab-content" id="logTab")
                     
-                        div(class="tab-pane active fade" id="login-form")
+                        div(class="tab-pane active fade" id="login-tab")
                             h5(class="tab-title") Đăng nhập               
                             div(class="tab-pane-content")    
                                 div(class="img-container right")
                                     img(src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signup-image.jpg")     
-                                form(action="", method="post" class="left")
+                                form(action="" class="left" id = "login-form")
                                     div(class="form-group")
                                         label(for="login-name") Tên đăng nhập
-                                        input(placeholder='Nhập tên đăng nhập' class="form-control" id="login-name")
+                                        input(placeholder='Nhập tên đăng nhập' class="form-control" id="login-name"
+                                        name="loginName" maxlength="30")
+                                        p(class="message drop-top")
                                     div(class="form-group")
                                         label(for="login-password") Mật khẩu
-                                        input(class="form-control" placeholder="Nhập mật khẩu" id="login-password" type="password") 
+                                        input(class="form-control" placeholder="Nhập mật khẩu" id="login-password" type="password"
+                                        name="loginPassword" maxlength="30") 
+                                        p(class="message drop-top")
                                     button(type="submit" class="btn-action") Đăng nhập                            
 
-                        div(class="tab-pane fade" id="register-form")
+                        div(class="tab-pane fade" id="register-tab")
                             h5(class="tab-title") Đăng ký
                             div(class="tab-pane-content")         
                                 div(class="img-container left")
                                     img(src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg")
-                                form(action="", method="post" class="right")
+                                form(action="" class="right" id="register-form")
                                     div(class="form-group")
                                         label(for="register-fullName") Họ và tên
-                                        input(placeholder='Nhập họ và tên' class="form-control" id="register-fullName")
+                                        input(placeholder='Nhập họ và tên' class="form-control" id="register-fullName" 
+                                        name = "registerFullName")
+                                        p(class="message drop-top")
                                     div(class="form-group")
                                         label(for="register-name") Tên đăng nhập
-                                        input(placeholder='Nhập tên đăng nhập' class="form-control" id="register-name")
+                                        input(placeholder='Nhập tên đăng nhập' class="form-control" id="register-name"
+                                        name = "registerName")
+                                        p(class="message drop-top")
                                     div(class="form-group")
                                         label(for="register-password") Mật khẩu
-                                        input(class="form-control" placeholder="Nhập mật khẩu" id="register-password" type="password") 
+                                        input(class="form-control" placeholder="Nhập mật khẩu" id="register-password" type="password" name="registerPassword") 
+                                        p(class="message drop-top")
                                     div(class="form-group")
                                         label(for="register-confirm") Mật khẩu xác thực
-                                        input(class="form-control" placeholder="Nhập mật khẩu xác nhận" id="register-confirm" type="password") 
+                                        input(class="form-control" placeholder="Nhập mật khẩu xác nhận" id="register-confirm" type="password" name="confirmPassword") 
+                                        p(class="message drop-top")
                                     button(type="submit" class="btn-action") Đăng ký tài khoản                            
 
         section(class="dashboard-member")
@@ -283,11 +293,13 @@ html(lang="en")
                 span  Cần Thơ
         
         button(id="btn-top" class="fade btn-top")
-            i(class="fa fa-arrow-circle-up")
+            i(class="fa fa-arrow-up")
 
         script(src="/js/action/slider.js")  
         script(src="/js/action/modal.js")   
         script(src="/js/action/tab-pane.js")  
         script(src="/js/action/btn-top.js")             
-                        
+        script(src="/js/models/Authenticate.js")
+        script(src="/js/validation/login.js")
+        script(src="/js/validation/register.js")
 

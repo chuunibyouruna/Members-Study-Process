@@ -17,6 +17,20 @@
         margin-bottom: .3rem;
         text-transform: uppercase;
     }
+    .message{
+        font-size: .7rem;
+        margin-bottom: 0;
+        margin-top: 5px;
+        transform-origin: top;
+        display: none;
+    }
+    &.in-valid{
+        border: 1px solid $red;
+        .message{
+            color: $red;
+            display: block;
+        }
+    }
 }
 
 .form-control{

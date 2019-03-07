@@ -17,12 +17,15 @@
     position: fixed;
     right: 20px;
     bottom: 20px;
-    background-color: transparent;
+    background-color: $blue;
     z-index: 100;
     display: none;
+    border-radius: 50%;
+    padding: 5px;
     i{
-        font-size: 2.3rem;
+        font-size: 1.8rem;
         cursor: pointer;
+        color: rgba(255,255,255,0.8);
     }
 }
 
