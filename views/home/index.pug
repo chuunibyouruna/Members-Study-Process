@@ -8,7 +8,7 @@ html(lang="en")
         link(href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet")
         link(href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet")
         link(rel="stylesheet", href="/css/home.css")      
-        title My Site - #{title}
+        title #{title}
     body
         nav(class="navbar")
             a(href="http://localhost:3000/home", class="nav-link nav-brand")
@@ -120,20 +120,20 @@ html(lang="en")
                                     div(class="form-group")
                                         label(for="register-fullName") Họ và tên
                                         input(placeholder='Nhập họ và tên' class="form-control" id="register-fullName" 
-                                        name = "registerFullName")
+                                        name = "registerFullName" maxlength="30")
                                         p(class="message drop-top")
                                     div(class="form-group")
                                         label(for="register-name") Tên đăng nhập
                                         input(placeholder='Nhập tên đăng nhập' class="form-control" id="register-name"
-                                        name = "registerName")
+                                        name = "registerName" maxlength="30")
                                         p(class="message drop-top")
                                     div(class="form-group")
                                         label(for="register-password") Mật khẩu
-                                        input(class="form-control" placeholder="Nhập mật khẩu" id="register-password" type="password" name="registerPassword") 
+                                        input(class="form-control" placeholder="Nhập mật khẩu" id="register-password" type="password" name="registerPassword" maxlength="30") 
                                         p(class="message drop-top")
                                     div(class="form-group")
                                         label(for="register-confirm") Mật khẩu xác thực
-                                        input(class="form-control" placeholder="Nhập mật khẩu xác nhận" id="register-confirm" type="password" name="confirmPassword") 
+                                        input(class="form-control" placeholder="Nhập mật khẩu xác nhận" id="register-confirm" type="password" name="confirmPassword" maxlength="30") 
                                         p(class="message drop-top")
                                     button(type="submit" class="btn-action") Đăng ký tài khoản                            
 
@@ -298,7 +298,8 @@ html(lang="en")
         script(src="/js/action/slider.js")  
         script(src="/js/action/modal.js")   
         script(src="/js/action/tab-pane.js")  
-        script(src="/js/action/btn-top.js")             
+        script(src="/js/action/btn-top.js")      
+        script(src="/js/constant/messages.js")       
         script(src="/js/models/Authenticate.js")
         script(src="/js/validation/login.js")
         script(src="/js/validation/register.js")

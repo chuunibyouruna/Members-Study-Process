@@ -455,7 +455,8 @@ section {
     width: 100%;
     height: 430px; }
   .home-advantages .advantages-list .advantages-item p {
-    font-size: 1.1rem; }
+    font-size: 1rem;
+    color: #707070; }
   .home-advantages .advantages-list .advantages-item .sub-title {
     font-size: 1.5rem; }
     .home-advantages .advantages-list .advantages-item .sub-title .index {
@@ -530,6 +531,10 @@ section {
     .home-introduce .introduce-content div.img-wrapper img {
       width: 100%;
       height: 550px; }
+  .home-introduce .introduce-content p {
+    color: #707070;
+    font-size: 1rem;
+    line-height: 1.7rem; }
 
 @media screen and (max-width: 768px) {
   .home-introduce .introduce-content {

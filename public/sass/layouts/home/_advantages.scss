@@ -13,6 +13,7 @@
             grid-gap: 50px;
             margin-bottom: 7rem;
             margin-top: 7rem;
+
             .left{
                 order: 0;
             }
@@ -24,7 +25,8 @@
                 height: 430px;
             }
             p{
-                font-size: 1.1rem;
+                font-size: 1rem;
+                color: $gray;
             }
             .sub-title{
                 font-size: 1.5rem;
