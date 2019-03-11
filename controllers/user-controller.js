@@ -144,23 +144,29 @@ module.exports.postRegister = (req,res) =>{
 
     })
 };
+
 module.exports.stateExercise = (req,res) => {
     jwt.verify(req.token, privateKey, (err,user) =>{
-        if(err){
+        if(err) {
             res.sendStatus(403);
-        }else{
-            const idCourse = req.params.course;
-            const idLession = req.query.lession;
+        } else{
+            const idCourse = req.params.course; //params
+            const idLession = req.params.lession; //params
             const idUser = user.User_idUser;
-            let sql = `call getState("${idUser}","${idCourse}",${idLession})`;
-            conn.query(sql,(err,data)=>{
-                if(err) throw err;
-                res.json({state:data[0][0].State});
-            });
+            const quest = req.query;
+
+            if (quest.state) {
+                let sql = `call getState("${idUser}","${idCourse}",${idLession})`;
+                conn.query(sql,(err,data)=>{
+                    if(err) throw err;
+                    res.json({state:data[0][0].State});
+                });
+            }
         }
     });
-    res.json({state:"N"});
+    else res.json({state:"N"});
 };
+
 module.exports.postExcercise = (req,res) => {
     const data = req.body;
     jwt.verify(req.token, privateKey, (err,user) =>{

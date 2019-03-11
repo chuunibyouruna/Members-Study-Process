@@ -16,7 +16,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
-DROP DATABASE `mydb`;
 
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 
@@ -28,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`TypeUser` (
   PRIMARY KEY (`idTypeUser`))
 ENGINE = InnoDB;
 
-SELECT * FROM TYPEUSER;- -----------------------------------------------------
+SELECT * FROM TypeUser;------------------------------------------------------
 
 
 INSERT INTO `mydb`.`TypeUser`
@@ -82,7 +81,7 @@ INSERT INTO `mydb`.`User`
 INSERT INTO `mydb`.`User`
 	VALUES ('12','Nguyen Van Manager','1998-02-02','CodersTokyo CanTho','Avatar Manager','Can Tho','2018-03-03','0123456789','02');
 
-SELECT * FROM USER;
+SELECT * FROM User;
 -- -----------------------------------------------------
 -- Table `mydb`.`Course`
 -- -----------------------------------------------------
