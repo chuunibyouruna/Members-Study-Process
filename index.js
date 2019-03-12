@@ -31,12 +31,3 @@ app.use('/users', userRouter);
 app.listen(port, () => console.log(`Server is started on port ${port}`));
 
 
-
-
-
-
-// VIEW
-
-app.get('/home', function (req, res) {
-    res.render('home/index', { title: 'Coders.tokyo Cần Thơ - Trang chủ' });
-})

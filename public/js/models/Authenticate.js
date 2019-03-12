@@ -15,6 +15,18 @@ class Validator {
         }
     }
 
+    checkPhoneNumer(key, message, field) {
+        const regex = /1?[\s-]?\(?(\d{3})\)?[\s-]?\d{3,4}[\s-]?\d{4}/i;
+        if (regex.test(field.value)) {
+            this.success(key, '', field);
+            return true;
+        }
+        else {
+            this.failure(key, message, field);
+            return false;
+        }
+    }
+
     checkSpecialCharacters(key, message, field) {
         const regex = /[!@#$%^&*(),.?":{}|<>~\s]/g;
         if (regex.test(field.value)) {
@@ -24,6 +36,17 @@ class Validator {
         else {
             this.success(key, '', field);
             return true;
+        }
+    }
+
+    checkTextLength(key, message, field, min, max) {
+        if (field.value.length >= min && field.value.length <= max) {
+            this.success(key, '', field);
+            return true;
+        }
+        else {
+            this.failure(key, message, field);
+            return false;
         }
     }
 

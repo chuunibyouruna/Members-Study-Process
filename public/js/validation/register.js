@@ -1,33 +1,48 @@
 const registerForm = document.querySelector("#register-form");
-const registerFullName = registerForm.querySelector("[name='registerFullName']");
-const registerName = registerForm.querySelector("[name='registerName']");
-const registerPassword = registerForm.querySelector("[name='registerPassword']");
-const confirmPassword = registerForm.querySelector("[name='confirmPassword']");
+const registerFullName = registerForm.querySelector("[name='full_name']");
+const registerName = registerForm.querySelector("[name='user_name']");
+const registerPassword = registerForm.querySelector("[name='password']");
+const registerConfirmPass = registerForm.querySelector("[name='confirm_password']");
 
 let authRegister = new Validator();
 
+
 registerFullName.addEventListener("keyup", function (e) {
-    authRegister.checkEmptyField("registerFullName", messages.EMPTY_NAME, registerFullName);
+    let checkEmptyFullName =
+        authRegister.checkEmptyField("registerFullName", messages.EMPTY_NAME, registerFullName);
+
+    if (checkEmptyFullName) {
+        let checkFullNameLength = authRegister.checkTextLength("registerFullName", messages.GET_FIELD_LENGTH(5, 30), registerFullName, 5, 30);
+    }
 })
 
 registerName.addEventListener("keyup", function (e) {
+    let checkSpecial;
     let checkEmptyUserName = authRegister.checkEmptyField("registerName", messages.EMPTY_USER_NAME, registerName);
     if (checkEmptyUserName) {
-        authRegister.checkSpecialCharacters("registerName", messages.CHECK_SPECIAL_CHARCTERS, registerName);
+        checkSpecial = authRegister.checkSpecialCharacters("registerName", messages.CHECK_SPECIAL_CHARCTERS, registerName);
     }
-})
+    if (checkSpecial) {
+        authRegister.checkTextLength("registerName", messages.GET_FIELD_LENGTH(6, 30), registerName, 6, 30);
+    }
+});
 
 registerPassword.addEventListener("keyup", function (e) {
+    let checkSpecial;
     let checkEmptyPassword = authRegister.checkEmptyField("registerPassword", messages.EMPTY_PASSWORD, registerPassword);
     if (checkEmptyPassword) {
-        authRegister.checkSpecialCharacters("registerPassword", messages.CHECK_SPECIAL_CHARCTERS, registerPassword);
+        checkSpecial = authRegister.checkSpecialCharacters("registerPassword", messages.CHECK_SPECIAL_CHARCTERS, registerPassword);
     }
-})
+    if (checkSpecial) {
+        authRegister.checkTextLength("registerPassword", messages.GET_FIELD_LENGTH(6, 30), registerPassword, 6, 30);
+    }
+});
 
-confirmPassword.addEventListener("keyup", function (e) {
-    let checkEmptyPassword = authRegister.checkEmptyField("confirmPassword", messages.EMPTY_COFIRM_PASSWORD, confirmPassword);
+registerConfirmPass.addEventListener("keyup", function (e) {
+    let checkEmptyPassword =
+        authRegister.checkEmptyField("registerConfirmPass", messages.EMPTY_COFIRM_PASSWORD, registerConfirmPass);
     if (checkEmptyPassword) {
-        authRegister.compareToFirstPassword("confirmPassword", messages.COMPARE_PASSWORD, registerPassword, confirmPassword);
+        authRegister.compareToFirstPassword("registerConfirmPass", messages.COMPARE_PASSWORD, registerPassword, registerConfirmPass);
     }
 })
 
@@ -37,5 +52,28 @@ registerForm.addEventListener("submit", function (e) {
     authRegister.checkEmptyField("registerFullName", messages.EMPTY_NAME, registerFullName);
     authRegister.checkEmptyField("registerName", messages.EMPTY_USER_NAME, registerName);
     authRegister.checkEmptyField("registerPassword", messages.EMPTY_PASSWORD, registerPassword);
-    authRegister.checkEmptyField("confirmPassword", messages.EMPTY_COFIRM_PASSWORD, confirmPassword);
+    authRegister.checkEmptyField("registerConfirmPass", messages.EMPTY_COFIRM_PASSWORD, registerConfirmPass);
+    if (!Object.keys(authRegister.errors).length) {
+        let newUser = {
+            user_name: registerName.value,
+            password: registerPassword.value,
+            full_name: registerFullName.value,
+            dob: null,
+            school: null,
+            address: null,
+            phone_number: null,
+            avatar: null // this will remove in near future
+        }
+        fetch("http://localhost:3000/auth/register",
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify(newUser)
+            })
+            .then(function (res) { console.log(res.data) })
+            .catch(function (res) { console.log(res.response) })
+    }
 })

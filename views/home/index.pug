@@ -116,24 +116,24 @@ html(lang="en")
                             div(class="tab-pane-content")         
                                 div(class="img-container left")
                                     img(src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg")
-                                form(action="" class="right" id="register-form")
+                                form(class="right" id="register-form")
                                     div(class="form-group")
                                         label(for="register-fullName") Họ và tên
                                         input(placeholder='Nhập họ và tên' class="form-control" id="register-fullName" 
-                                        name = "registerFullName" maxlength="30")
+                                        name = "full_name" maxlength="30")
                                         p(class="message drop-top")
                                     div(class="form-group")
                                         label(for="register-name") Tên đăng nhập
                                         input(placeholder='Nhập tên đăng nhập' class="form-control" id="register-name"
-                                        name = "registerName" maxlength="30")
+                                        name = "user_name" maxlength="30")
                                         p(class="message drop-top")
                                     div(class="form-group")
                                         label(for="register-password") Mật khẩu
-                                        input(class="form-control" placeholder="Nhập mật khẩu" id="register-password" type="password" name="registerPassword" maxlength="30") 
+                                        input(class="form-control" placeholder="Nhập mật khẩu" id="register-password" type="password" name="password" maxlength="30") 
                                         p(class="message drop-top")
                                     div(class="form-group")
-                                        label(for="register-confirm") Mật khẩu xác thực
-                                        input(class="form-control" placeholder="Nhập mật khẩu xác nhận" id="register-confirm" type="password" name="confirmPassword" maxlength="30") 
+                                        label(for="confirm-password") Mật khẩu xác nhận
+                                        input(class="form-control" placeholder="Nhập mật khẩu xác nhận" id="confirm-password" type="password" name="confirm_password" maxlength="30") 
                                         p(class="message drop-top")
                                     button(type="submit" class="btn-action") Đăng ký tài khoản                            
 
