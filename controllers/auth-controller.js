@@ -5,45 +5,45 @@ const jwt = require('jsonwebtoken');
 const privateKey = 'Coders.Tokyo';
 
 
-module.exports.login = (req,res) =>{
+module.exports.login = (req, res) => {
     res.send('write get login here');
 }
 
-module.exports.postLogin = (req,res) =>{
+module.exports.postLogin = (req, res) => {
     var account = {};
-    if(req.body.user_name){
+    if (req.body.user_name) {
         const sql = `Call GetAccount('${req.body.user_name}')`
-        conn.query(sql,function(err,data){
-            if(err) throw console.error('error db');
+        conn.query(sql, function (err, data) {
+            if (err) throw console.error('error db');
             account = data[0][0];
             console.log(account.password);
             // Load hash from your password DB.
-            bcrypt.compare(req.body.password, account.password, function(err, check) {
-                if(check){
+            bcrypt.compare(req.body.password, account.password, function (err, check) {
+                if (check) {
                     console.log('login complete');
-                    jwt.sign({account},privateKey,(err,token)=>{
-                        console.log('this is token',token);
-                        res.json({token});
+                    jwt.sign({ account }, privateKey, (err, token) => {
+                        console.log('this is token', token);
+                        res.json({ token });
                     })
-                    
+
                 }
-                else{
+                else {
                     console.log('wrong password');
                 }
             });
-        }) 
+        })
     }
-    else{
+    else {
         console.log('user name donot exist');
     }
 }
 
 //use this middleware to take information of token
-function verifyToken(req,res,next){
+function verifyToken(req, res, next) {
     //get auth header value
     const bearerHeader = req.header['authorization'];
     //check if bearer is undefined
-    if(typeof bearerHeader !== 'undefined'){
+    if (typeof bearerHeader !== 'undefined') {
         //Split at the space
         const bearer = bearerHeader.split(' ');
         //get token from array
@@ -53,7 +53,7 @@ function verifyToken(req,res,next){
         //Next middleware
         next();
     }
-    else{
+    else {
         //Forbidden
         res.sendStatus(403);
     }

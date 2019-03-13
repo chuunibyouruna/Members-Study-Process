@@ -1,0 +1,45 @@
+.form-group{
+    margin-bottom: 2rem;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+    padding-left: .5rem;
+    padding-bottom: .5rem;
+    padding-top: .3rem;
+    label{
+        display: block;
+        left:0;
+        top: 5px;
+        font-size: .7rem;
+        font-family: 'Montserrat', sans-serif;
+        color: $light-gray;
+        margin: 0;
+        margin-bottom: .3rem;
+        text-transform: uppercase;
+    }
+    .message{
+        font-size: .7rem;
+        margin-bottom: 0;
+        margin-top: 5px;
+        transform-origin: top;
+        display: none;
+    }
+    &.in-valid{
+        border: 1px solid $red;
+        .message{
+            color: $red;
+            display: block;
+        }
+    }
+}
+
+.form-control{
+    display: block;
+    color: $black;
+    border:0;
+    box-sizing: border-box;
+    transition: all .4s;
+    width: 100%;
+    font-size: .8rem;
+}
+
