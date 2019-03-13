@@ -6,7 +6,7 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
+SET SQL_SAFE_UPDATES = 0;
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
@@ -22,16 +22,16 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 
 -- -----------------------------------------------------
 -- Table `mydb`.`TypeUser`
+-- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`TypeUser` (
   `idTypeUser` CHAR(6) NOT NULL,
   `NameOfType` VARCHAR(45) NULL,
   PRIMARY KEY (`idTypeUser`))
 ENGINE = InnoDB;
 
-SELECT * FROM TYPEUSER;- -----------------------------------------------------
+SELECT * FROM TYPEUSER;
 
-
-INSERT INTO `mydb`.`TypeUser`
+INSERT INTO `mydb`.`TypeUser` 
 	VALUES ('01','Admin'),
 			('02','Maganer'),
 			 ('03','Member');
@@ -195,10 +195,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`CodeDetail` (
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
-INSERT INTO `mydb`.`CodeDetail`
-  VALUES('HTML','01','2','','----','Y');
+
+
 -- -----------------------------------------------------
--- Table `mydb`.`LinkContentScore`
+-- Table `mydb`.`Score`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Score` (
   `User_idUser` CHAR(6) NOT NULL,
@@ -219,7 +219,7 @@ INSERT INTO `mydb`.`Score`
 	VALUES ('03',432);
 INSERT INTO `mydb`.`Score`
 	VALUES ('04',333);
-INSERT INTO `mydb`.`Score`VARCHAR(9999)
+INSERT INTO `mydb`.`Score`
 	VALUES ('05',551);
 INSERT INTO `mydb`.`Score`
 	VALUES ('06',666);
@@ -235,19 +235,21 @@ INSERT INTO `mydb`.`Score`
 SELECT * FROM `mydb`.`Score`;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Account`VARCHAR(9999)
+-- Table `mydb`.`Account`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Account` (
   `User_idUser` CHAR(6) NOT NULL,
   `UserName` VARCHAR(45) NULL,
-  `PassWord` VARCHAR(45) NULL,
+  `PassWord` VARCHAR(100) NULL,
+  `ResetToken` VARCHAR(45) NULL,
+  `TokenExpire` DATETIME NULL,
   PRIMARY KEY (`User_idUser`),
   CONSTRAINT `fk_Account_User1`
     FOREIGN KEY (`User_idUser`)
     REFERENCES `mydb`.`User` (`idUser`)
     ON DELETE CASCADE
     ON UPDATE CASCADE)
-ENGINE = InnoDB;LinkContent
+ENGINE = InnoDB;
 
 INSERT INTO `mydb`.`Account`
 	VALUES ('01','nguyenvana@gmail.com','123456');
@@ -293,7 +295,7 @@ INSERT INTO `mydb`.`Privilege`
 	VALUES ('02',TRUE,TRUE,TRUE,FALSE);
 INSERT INTO `mydb`.`Privilege`
 	VALUES ('03',FALSE,TRUE,FALSE,FALSE);
-
+    
 -- -----------------------------------------------------
 -- Table `mydb`.`CourseDetail`
 -- -----------------------------------------------------
@@ -333,13 +335,11 @@ begin
 end:)
 delimiter $$
 
-delimiter :)
 CREATE PROCEDURE GetTopPoint(NumberGet integer)
     BEGIN
 	SELECT Avatar,FullName,Score FROM User JOIN Score ON Score.User_idUser = User.idUser
     ORDER BY Score.score DESC LIMIT NumberGet ;
-	END:)
-  delimiter $$
+	END$$
 
 delimiter ;
 call ShowUser;
@@ -350,22 +350,6 @@ CREATE PROCEDURE getUserProfile(id varchar(45))
     END; $$
 delimiter ;
 
-DROP procedure getState;
-delimiter $$
-CREATE PROCEDURE getState(idUser varchar(6),idCourse varchar(10), idLession int)
-    BEGIN
-      SELECT * FROM CodeDetail WHERE UserRecord_User_idUser = idUser AND UserRecord_Course_idCourse = idCourse AND UserRecord_Lession = idLession;
-    END; $$
-  delimiter;;
-
-DROP procedure postLink;
-delimiter $$
-CREATE PROCEDURE postLink(idUser varchar(6), idCourse varchar(10), idLession int, link varchar(9999))
-    BEGIN
-      UPDATE CodeDetail SET LinkContent = link WHERE UserRecord_User_idUser = idUser AND UserRecord_Course_idCourse = idCourse AND UserRecord_Lession = idLession;
-    END; $$
-  delimiter;
-
 delimiter $$
 CREATE PROCEDURE updateUser(name varchar(45),birthday DATE,school varchar(45),address varchar(45),id CHAR(6))
     BEGIN
@@ -375,17 +359,68 @@ delimiter ;
 
 
 delimiter $$
-CREATE PROCEDURE UserRegister(Name varchar(45),DoB Date,School varchar(45),Address varchar(45),Avatar varchar(9999),PhoneNumber varchar(45))
+CREATE PROCEDURE UserRegister(idUsr char(6),fullName varchar(45))
     BEGIN
-        INSERT INTO User(FullName,DoB,School,Address,Avatar,PhoneNumber)
-        VALUES (Name,DoB,School,Address,Avatar,PhoneNumber);
+        INSERT INTO User(idUser,FullName,TypeUser_idTypeUser)
+        VALUES (idUsr,fullName,'03');
     END; $$
--- CREATE PROCEDURE UserRegister(Name varchar(45),DoB Date,School varchar(45),Address varchar(45),Email varchar(45),Avatar varchar(9999),PhoneNumber varchar(45))
---     BEGIN
---         INSERT INTO User(FullName,DoB,School,Address,Avatar,PhoneNumber,Email)
---         VALUES (Name,DoB,School,Address,Avatar,PhoneNumber,Email);
---     END; $$
 delimiter ;
+
+delimiter $$
+CREATE PROCEDURE AccountRegister(idUser varchar(6), usrName varchar(45), password varchar(100))
+    BEGIN
+      INSERT INTO Account (User_idUser,UserName,Password)
+      VALUES (idUser,usrName,password);
+    END; $$
+
+delimiter ;
+
+delimiter $$
+CREATE PROCEDURE getState(idUser varchar(6), idLession varchar(10))
+    BEGIN
+      SELECT * FROM CodeDetail WHERE UserRecord_User_idUser = idUser AND UserRecord_Course_idCourse = idLession;
+    END; $$
+
+  delimiter ;
+
+
+delimiter $$
+CREATE PROCEDURE postLink(idUser varchar(6), idLession varchar(10), link varchar(9999))
+    BEGIN
+      UPDATE CodeDetail SET LinkContent = link WHERE UserRecord_User_idUser = idUser AND UserRecord_Course_idCourse = idLession;
+    END; $$
+  delimiter ;
+
+delimiter $$
+CREATE PROCEDURE checkUser(usrName varchar(45))
+	BEGIN
+		SELECT * FROM Account WHERE UserName like usrName;
+    END; $$
+delimiter ;
+  
+delimiter $$
+CREATE PROCEDURE createToken(usrName varchar(45),token varchar(45))
+	BEGIN
+		UPDATE Account Set ResetToken = token,TokenExpire = NOW() WHERE Account.UserName = usrName;
+    END; $$
+delimiter ;
+
+delimiter $$
+CREATE PROCEDURE resetPassword(token varchar(45),newPassword varchar(45))
+	BEGIN
+		UPDATE Account SET PassWord = newPassword WHERE TIMEDIFF(NOW(),TOKENEXPIRE) < '00:15:00' AND ResetToken LIKE token;
+    END; $$
+delimiter ;
+
+
+delimiter $$
+CREATE PROCEDURE clearToken(token varchar(45))
+	BEGIN
+		UPDATE ACCOUNT SET ResetToken = null,TokenExpire = null WHERE ResetToken LIKE token;
+    END; $$
+delimiter ;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

@@ -128,17 +128,16 @@ module.exports.postRegister = (req,res) =>{
         console.log(hash);
         let tempId = shortid.generate();
         let idUser = tempId.slice(0,6);
-
+        console.log(idUser);
+        console.log(req.body)
         if(err) throw console.error('Hash error');
-        let sql = `call userRegister("${idUser}","${req.body.full_name}","${req.body.dob}",
-            "${req.body.school}","${req.body.address}","${req.body.avatar}",
-            "${req.body.phone_number}");
-        `
-        conn.query(sql,function(err,data){
+        let sqlUserRegister = `call userRegister("${idUser}","${req.body.full_name}");`
+        conn.query(sqlUserRegister,function(err,data){
             if(err) throw console.error('cannot push to table user , sth were happen');
-            let sql2 = `call accountRegister("${idUser}","${req.body.user_name}","${hash}");`
-            conn.query(sql2,function(err,data){
+            let sqlAccountRegister = `call accountRegister("${idUser}","${req.body.user_name}","${hash}");`
+            conn.query(sqlAccountRegister,function(err,data){
                 if (err) throw console.error('cannot push to table account , sth were happen');
+                res.json('registed')
             })
         })
 
