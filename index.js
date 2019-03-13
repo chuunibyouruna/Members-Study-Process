@@ -11,6 +11,13 @@ const app = express();
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+// middleware allow request
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, authorization");
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, PATCH');
+    next();
+});
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -24,12 +31,3 @@ app.use('/users', userRouter);
 app.listen(port, () => console.log(`Server is started on port ${port}`));
 
 
-
-
-
-
-// VIEW
-
-app.get('/home', function (req, res) {
-    res.render('home/index', {});
-})

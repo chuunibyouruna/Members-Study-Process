@@ -23,10 +23,9 @@
     border: 0;
     box-shadow: 3px 3px 3px rgba(0,0,0,0.1);
     animation: displayModal 0.4s ease;
-}
-
-.modal-content.hide-modal{
-    animation: hideModal 0.5s ease;
+    &.hide-modal{
+        animation: hideModal 0.5s ease;
+    }
 }
 
 .close {
@@ -37,13 +36,11 @@
     position: absolute;
     right: 10px;
     top: 0px;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+    &:hover, &:focus{
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
 }
 
 

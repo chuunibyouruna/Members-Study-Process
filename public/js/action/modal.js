@@ -4,7 +4,8 @@ const btnToggles = document.querySelectorAll(".btnToggleModal");
 btnToggles.forEach(btn => {
     const modal = document.querySelector(`${btn.dataset.target}`);
     const closeBtn = modal.querySelector(".close");
-    const modalContent = modal.querySelector(".modal-content ");
+    const modalContent = modal.querySelector(".modal-content");
+
     btn.onclick = function () {
         modal.style.display = "block";
         modalContent.classList.remove("hide-modal");

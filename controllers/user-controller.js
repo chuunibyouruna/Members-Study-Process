@@ -10,7 +10,7 @@ module.exports.getScore = (req, res, next) => {
     let id = req.params.id;
     let sql = "SELECT User.idUser, User.FullName, Score.Score FROM User JOIN Score ON User.idUSer = Score.User_idUser";
     conn.query(sql, (err, data) => {
-        if(err) throw err;
+        if (err) throw err;
         data = data.filter((item) => item.idUser == id);
         res.render('score.pug', {
             users: data
@@ -18,7 +18,7 @@ module.exports.getScore = (req, res, next) => {
     });
 }
 
-module.exports.getScores =  (req, res, next) => {
+module.exports.getScores = (req, res, next) => {
     let users = [];
     let sql = "SELECT User.FullName, Score.Score FROM User JOIN Score ON User.idUSer = Score.User_idUser";
     conn.query(sql, (err, data) => {
@@ -30,23 +30,23 @@ module.exports.getScores =  (req, res, next) => {
     });
 }
 
-function getDefaultDate(now){
+function getDefaultDate(now) {
     console.log(`date ${now} ${typeof now}`);
     var day = ("0" + now.getDate()).slice(-2);
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
-    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+    var today = now.getFullYear() + "-" + (month) + "-" + (day);
     return today;
 }
 
-module.exports.editProfile =async function (req,res) {
+module.exports.editProfile = async function (req, res) {
     const id = req.params.id;
-    const sql = "call getUserProfile('"+id+"')";
-    await conn.query(sql,async function(err,users,field){
+    const sql = "call getUserProfile('" + id + "')";
+    await conn.query(sql, async function (err, users, field) {
         let user = users[0][0];
-        if(!err){
+        if (!err) {
             user.DoB = getDefaultDate(user.DoB);
             user.DateJoin = getDefaultDate(user.DateJoin);
-            res.json({user: user});
+            res.json({ user: user });
             // res.render("users/edit-profile",{
             //     user: user
             // })
@@ -64,38 +64,38 @@ function escapeHtml(unsafe) {
         .replace(/'/g, "&#039;")
         .replace(/\\(.)/mg, "$1");
 }
-module.exports.postEditProfile = function(req,res){
+module.exports.postEditProfile = function (req, res) {
     // console.log(req.body);
     const data = req.body;
     data.name = escapeHtml(data.name);
     data.school = escapeHtml(data.school);
     data.address = escapeHtml(data.address);
     // var sql = " UPDATE User SET FullName = '"+data.name+"', DoB = '"+data.birthday+"', School = '"+data.school+"', Address = '"+data.address+"' WHERE idUser = '"+data.id+"'" ;
-    var sql = "CALL updateUser('"+data.name+"', '"+data.birthday+"','"+data.school+"', '"+data.address+"', '"+data.id+"')";
-    conn.query(sql,function(err){
-        if(err) throw err;
-        res.redirect("/users/personal/edit-profile/"+data.id);
+    var sql = "CALL updateUser('" + data.name + "', '" + data.birthday + "','" + data.school + "', '" + data.address + "', '" + data.id + "')";
+    conn.query(sql, function (err) {
+        if (err) throw err;
+        res.redirect("/users/personal/edit-profile/" + data.id);
     });
     // res.redirect("/users/personal");
 };
-module.exports.indexMembersPage = function(req,res){
+module.exports.indexMembersPage = function (req, res) {
     var page = parseInt(req.query.page) || 1;
-    var currentPage =[page];
-    var pages =[page,page+1,page+2];
-    var perPage =4;
-    var start = (page -1)*perPage;
-    var end = page*perPage;
+    var currentPage = [page];
+    var pages = [page, page + 1, page + 2];
+    var perPage = 4;
+    var start = (page - 1) * perPage;
+    var end = page * perPage;
     conn.query('call ShowUser()',
-        function(err,result,fields){
+        function (err, result, fields) {
             if (err) throw err;
             //result[0].DoB = date.format(result[0].DoB,'YYYY-MM-DD');
             // console.log(result[0]);
-            for(var i in result[0]){
-                result[0][i].DoB = date.format(result[0][i].DoB,'YYYY-MM-DD');
+            for (var i in result[0]) {
+                result[0][i].DoB = date.format(result[0][i].DoB, 'YYYY-MM-DD');
             }
             console.log(result);
             res.render('user/index', {
-                users: result[0].splice(start,end),
+                users: result[0].splice(start, end),
                 n: pages,
                 current: currentPage
             });
@@ -103,13 +103,13 @@ module.exports.indexMembersPage = function(req,res){
 };
 
 
-module.exports.index = (req,res)=>{
+module.exports.index = (req, res) => {
     var topUsers = "";
     sql = "CALL GetTopPoint(10)";
-    conn.query(sql,(err,result)=>{
-        if(err) console.error("Error");
+    conn.query(sql, (err, result) => {
+        if (err) return res.status(404).json({ error: "Page not found" })
         topUsers = result[0];
-        res.render('personal-page/index',{
+        res.render('home/index', {
             topUser: topUsers
         });
     });
@@ -119,12 +119,13 @@ module.exports.index = (req,res)=>{
 
 
 
-module.exports.register = (req,res) =>{
+module.exports.register = (req, res) => {
     res.render('../views/authorization/register.pug');
 }
 
-module.exports.postRegister = (req,res) =>{
-    bcrypt.hash(req.body.password,saltRounds,function(err,hash){
+module.exports.postRegister = (req, res) => {
+    console.log(req.body);
+    bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
         console.log(hash);
         let tempId = shortid.generate();
         let idUser = tempId.slice(0,6);
@@ -143,48 +144,48 @@ module.exports.postRegister = (req,res) =>{
 
     })
 };
-module.exports.stateExercise = (req,res) => {
-    jwt.verify(req.token, privateKey, (err,user) =>{
-        if(err){
+module.exports.stateExercise = (req, res) => {
+    jwt.verify(req.token, privateKey, (err, user) => {
+        if (err) {
             res.sendStatus(403);
-        }else{
+        } else {
             const idCourse = req.params.course;
             const idLession = req.query.lession;
             const idUser = user.User_idUser;
             let sql = `call getState("${idUser}","${idCourse}",${idLession})`;
-            conn.query(sql,(err,data)=>{
-                if(err) throw err;
-                res.json({state:data[0][0].State});
+            conn.query(sql, (err, data) => {
+                if (err) throw err;
+                res.json({ state: data[0][0].State });
             });
         }
     });
-    res.json({state:"N"});
+    res.json({ state: "N" });
 };
-module.exports.postExcercise = (req,res) => {
+module.exports.postExcercise = (req, res) => {
     const data = req.body;
-    jwt.verify(req.token, privateKey, (err,user) =>{
-        if(err){
+    jwt.verify(req.token, privateKey, (err, user) => {
+        if (err) {
             res.sendStatus(403);
-        }else{
+        } else {
             const idCourse = req.params.course;
             const idLession = req.query.lession;
             const idUser = user.User_idUser;
             const link = data.link;
             const sql = `call postLink("${idUser}","${idCourse}",${idLession},"${link}")`;
-            conn.query(sql,(err)=>{
-                if(err) throw err;
-                res.json({state:'Y'});
+            conn.query(sql, (err) => {
+                if (err) throw err;
+                res.json({ state: 'Y' });
             });
         }
     });
-    res.json({state:'N'});
+    res.json({ state: 'N' });
 };
 //use this middleware to take information of token
-function verifyToken(req,res,next){
+function verifyToken(req, res, next) {
     //get auth header value
     const bearerHeader = req.header['authorization'];
     //check if bearer is undefined
-    if(typeof bearerHeader !== 'undefined'){
+    if (typeof bearerHeader !== 'undefined') {
         //Split at the space
         const bearer = bearerHeader.split(' ');
         //get token from array
@@ -194,7 +195,7 @@ function verifyToken(req,res,next){
         //Next middleware
         next();
     }
-    else{
+    else {
         //Forbidden
         res.sendStatus(403);
     }
