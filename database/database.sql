@@ -16,7 +16,6 @@ SET SQL_SAFE_UPDATES = 0;
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
 USE `mydb` ;
-DROP DATABASE `mydb`;
 
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123456';
 
@@ -29,7 +28,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`TypeUser` (
   PRIMARY KEY (`idTypeUser`))
 ENGINE = InnoDB;
 
+<<<<<<< HEAD
 SELECT * FROM TYPEUSER;
+=======
+SELECT * FROM TypeUser;------------------------------------------------------
+
+>>>>>>> ab189019aa5fb36faf840477fb64a4be7438f57d
 
 INSERT INTO `mydb`.`TypeUser` 
 	VALUES ('01','Admin'),
@@ -82,7 +86,7 @@ INSERT INTO `mydb`.`User`
 INSERT INTO `mydb`.`User`
 	VALUES ('12','Nguyen Van Manager','1998-02-02','CodersTokyo CanTho','Avatar Manager','Can Tho','2018-03-03','0123456789','02');
 
-SELECT * FROM USER;
+SELECT * FROM User;
 -- -----------------------------------------------------
 -- Table `mydb`.`Course`
 -- -----------------------------------------------------
