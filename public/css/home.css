@@ -39,9 +39,12 @@ section {
   border: 0;
   transition: all .3s;
   cursor: pointer;
-  font-weight: bold; }
+  font-weight: bold;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), inset 0 2px 0 #609DE6; }
   .btn-action:hover {
     background: #609DE6; }
+  .btn-action:target {
+    box-shadow: unset; }
 
 .btn-top {
   display: block;
@@ -52,7 +55,8 @@ section {
   z-index: 100;
   display: none;
   border-radius: 50%;
-  padding: 5px; }
+  padding: 5px;
+  box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.2); }
   .btn-top i {
     font-size: 1.8rem;
     cursor: pointer;
@@ -106,7 +110,6 @@ section {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: black;
   background-color: rgba(0, 0, 0, 0.3); }
 
 .modal-content {
@@ -254,6 +257,9 @@ section {
     transform: scaleY(1); } }
 .title {
   font-size: 2rem; }
+
+p {
+  line-height: 1.6rem; }
 
 .copy-right {
   text-align: center;
@@ -487,7 +493,8 @@ section {
   .dashboard-member .dashboard-member-list {
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
-    padding: 15px 20px; }
+    padding: 15px 20px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); }
     .dashboard-member .dashboard-member-list .dashboard-title {
       font-family: 'Montserrat', sans-serif;
       font-size: .9rem;
@@ -520,6 +527,13 @@ section {
     font-size: 1rem; }
   .dashboard-member .dashboard-member-list .dashboard-item .dashboard-score {
     font-size: 1.2rem; } }
+@media screen and (max-width: 400px) {
+  .dashboard-member .dashboard-member-list .dashboard-item .dashboard-info .member-index {
+    font-size: 1.2rem; }
+  .dashboard-member .dashboard-member-list .dashboard-item .dashboard-info .member-name {
+    font-size: .9rem; }
+  .dashboard-member .dashboard-member-list .dashboard-item .dashboard-score {
+    font-size: 1rem; } }
 .home-introduce .introduce-content {
   margin-top: 10rem;
   display: grid;
