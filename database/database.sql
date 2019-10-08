@@ -28,12 +28,9 @@ CREATE TABLE IF NOT EXISTS `mydb`.`TypeUser` (
   PRIMARY KEY (`idTypeUser`))
 ENGINE = InnoDB;
 
-<<<<<<< HEAD
-SELECT * FROM TYPEUSER;
-=======
+
 SELECT * FROM TypeUser;------------------------------------------------------
 
->>>>>>> ab189019aa5fb36faf840477fb64a4be7438f57d
 
 INSERT INTO `mydb`.`TypeUser` 
 	VALUES ('01','Admin'),
@@ -239,9 +236,9 @@ INSERT INTO `mydb`.`Score`
 SELECT * FROM `mydb`.`Score`;
 
 -- -----------------------------------------------------
--- Table `mydb`.`Account`
+-- Table mydb.Account(User_iduser,UserName,PassWord)
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Account` (
+CREATE TABLE IF NOT EXISTS `mydb`.`Account`(
   `User_idUser` CHAR(6) NOT NULL,
   `UserName` VARCHAR(45) NULL,
   `PassWord` VARCHAR(100) NULL,
@@ -255,25 +252,25 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Account` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-INSERT INTO `mydb`.`Account`
+INSERT INTO mydb.Account(User_iduser,UserName,PassWord)
 	VALUES ('01','nguyenvana@gmail.com','123456');
-INSERT INTO `mydb`.`Account`
+INSERT INTO mydb.Account(User_iduser,UserName,PassWord)
 	VALUES ('02','nguyenvanb@gmail.com','123456');
-INSERT INTO `mydb`.`Account`
+INSERT INTO mydb.Account(User_iduser,UserName,PassWord)
 	VALUES ('03','nguyenvanc@gmail.com','123456');
-INSERT INTO `mydb`.`Account`
+INSERT INTO mydb.Account(User_iduser,UserName,PassWord)
 	VALUES ('04','nguyenvand@gmail.com','123456');
-INSERT INTO `mydb`.`Account`
+INSERT INTO mydb.Account(User_iduser,UserName,PassWord)
 	VALUES ('05','nguyenvane@gmail.com','123456');
-INSERT INTO `mydb`.`Account`
+INSERT INTO mydb.Account(User_iduser,UserName,PassWord)
 	VALUES ('06','nguyenvanf@gmail.com','123456');
-INSERT INTO `mydb`.`Account`
+INSERT INTO mydb.Account(User_iduser,UserName,PassWord)
 	VALUES ('07','nguyenvang@gmail.com','123456');
-INSERT INTO `mydb`.`Account`
+INSERT INTO mydb.Account(User_iduser,UserName,PassWord)
 	VALUES ('08','nguyenvanh@gmail.com','123456');
-INSERT INTO `mydb`.`Account`
+INSERT INTO mydb.Account(User_iduser,UserName,PassWord)
 	VALUES ('09','nguyenvani@gmail.com','123456');
-INSERT INTO `mydb`.`Account`
+INSERT INTO mydb.Account(User_iduser,UserName,PassWord)
 	VALUES ('10','nguyenvanj@gmail.com','123456');
 
 -- -----------------------------------------------------
@@ -331,7 +328,7 @@ INSERT INTO `mydb`.`CourseDetail`
 
 /*PROCEDURE*/
 -- --DROP PROCEDURE GetTopPoint
-DROP procedure ShowUser;
+-- DROP procedure ShowUser;
 delimiter :)
 create procedure ShowUser()
 begin
